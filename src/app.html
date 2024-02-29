@@ -1,3 +1,7 @@
 <template>
   <h1>${message}</h1>
+  <require from="./my-profile"></require>
+  <div as-element="my-profile" first-name.bind="John" last-name.bind="Doe"></div>
+  <my-profile first-name.bind="Jane" last-name.bind="Smith"></my-profile>
+  <my-profile name.bind="Jane"></my-profile>
 </template>

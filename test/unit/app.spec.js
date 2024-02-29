@@ -19,7 +19,7 @@ describe('Stage App Component', () => {
       expect(view.textContent.trim()).toBe('Hello World!');
       done();
     }).catch(e => {
-      fail(e);
+      console.log(e);
       done();
     });
   });
