@@ -1,6 +1,18 @@
 {
   "version": "0.2.0",
   "configurations": [
+      {
+        "command": "npm run start",
+        "name": "Run npm run aurelia",
+        "request": "launch",
+        "type": "node-terminal",
+    },
+    {
+      "command": "npm run test",
+      "name": "Run npm run test",
+      "request": "launch",
+      "type": "node-terminal",
+  },
     {
       "name": "Chrome",
       "type": "chrome",
