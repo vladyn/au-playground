@@ -8,14 +8,13 @@ describe('MyProfile', () => {
   beforeEach(() => {
     component = StageComponent
       .withResources(PLATFORM.moduleName('my-profile'))
-      .inView('<my-profile first-name.bind="Bob" last-name.bind="Brown"></my-profile>')
-      .boundTo({ firstName: 'Bob' });
+      .inView('<my-profile first-name="Bob" last-name="Brown"></my-profile>')
+      .boundTo({ firstName: 'Bob', lastName: 'Brown' });
   });
 
   it('should render first name', done => {
     component.create(bootstrap).then(() => {
       const firstNameElement = document.querySelector('.firstName');
-      console.log(component.element.querySelector('.firstName'))
       expect(firstNameElement.innerHTML).toBe('Bob');
       const lastNameElement = document.querySelector('.lastName');
       expect(lastNameElement.innerHTML).toBe('Brown');
