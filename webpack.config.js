@@ -212,6 +212,11 @@ module.exports = ({ production }, { analyze, hmr, port, host }) => ({
       // Skip minimize in production build to avoid complain on unescaped < such as
       // <span>${ c < 5 ? c : 'many' }</span>
       { test: /\.html$/i, loader: 'html-loader', options: { minimize: false } },
+      { test: /\.jade$/i, use: [
+        { loader: 'html-loader' },
+        { loader: 'aurelia-webpack-plugin/html-requires-loader' },
+        { loader: 'pug-html-loader' }
+      ] },
       { test: /\.js$/i, loader: 'babel-loader', exclude: nodeModulesDir },
       // embed small images and fonts as Data Urls and larger ones as files:
       { test: /\.(png|svg|jpg|jpeg|gif)$/i, type: 'asset' },
@@ -223,7 +228,15 @@ module.exports = ({ production }, { analyze, hmr, port, host }) => ({
   },
   plugins: [
     new DuplicatePackageCheckerPlugin(),
-    new AureliaPlugin(),
+    new AureliaPlugin(
+      {
+        viewsExtensions: ['.jade', '.html'],
+        features: {
+          ie: false,
+          svg: false
+        }
+      }
+    ),
     new HtmlWebpackPlugin({
       template: 'index.ejs',
       metadata: {
