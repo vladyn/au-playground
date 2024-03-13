@@ -4,4 +4,30 @@
   <div as-element="my-profile" first-name="John" last-name="Doe"></div>
   <my-profile first-name="Jane" last-name="Smith"></my-profile>
   <my-profile name="Jane"></my-profile>
+
+  <require from="./account-details"></require>
+  <account-details message="Blias!"></account-details>
+
+  <require from="./tabs"></require>
+    <tabs>
+      <tab header="Top Movies">
+        <ul>
+          <li>The Shawshank Redemption</li>
+          <li>The Godfather</li>
+          <li>The Godfather: Part II</li>
+          <li>The Dark Knight</li>
+          <li>12 Angry Men</li>
+        </ul>
+      </tab>
+      <tab header="Top TV Shows">
+        <ul>
+          <li>Planet Earth II</li>
+          <li>Band of Brothers</li>
+          <li>Game of Thrones</li>
+          <li>Planet Earth</li>
+          <li>Breaking Bad</li>
+        </ul>
+      </tab>
+      <tab header="Recently Added"> Nothing to see here. </tab>
+    </tabs>
 </template>
