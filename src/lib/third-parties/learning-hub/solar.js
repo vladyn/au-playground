@@ -1,19 +1,32 @@
 export class Solar {
-  message = "Hola from solar";
-  
-  constructor(state = {}) {
-    this.state = state;
+  constructor() {
+    this.appRoot = this.create();
   }
 
-  createElement() {
-    customElements.define('solar-element', class extends HTMLElement {
-      constructor(message = "Hola from solar") {
+  create() {
+    customElements.define('app-root', class extends HTMLElement {
+      constructor() {
         super();
-        this.message = message;
-        this.attachShadow({mode: 'open'});
-        console.log(this.shadowRoot);
+      }
+
+      connectedCallback() {
+        console.log('Connected');
       }
     });
+  }
+
+  container() {
+      // Create a new div
+      let div = document.createElement('div');
+      div.id = 'learning-hub';
+
+      // Attach a shadow root to the div
+      let shadowRoot = div.attachShadow({mode: 'open'});
+
+      const root = document.createElement('app-root');
+      shadowRoot.appendChild(root);
+
+      return shadowRoot;
   }
 
   addStyles() {
@@ -24,14 +37,12 @@ export class Solar {
   }
 
   createScripts() {
-    // create the scripts elements 
     const main = document.createElement('script');
     main.src = 'http://localhost:8000/main.js';
     main.type = 'module';
     main.onload = () => {
-      console.log('Solar loaded');
+      console.log('Main loaded');
     };
-    
     const polyfill = document.createElement('script');
     polyfill.src = 'http://localhost:8000/polyfills.js';
     polyfill.onload = () => {
@@ -44,9 +55,7 @@ export class Solar {
 
   render() {
     this.addStyles();
-    this.createElement();
     this.createScripts();
-    const solarElement = document.createElement('app-root');
-    return solarElement;
+    return this.container();
   }
 }

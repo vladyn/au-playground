@@ -21,19 +21,11 @@ export class Skills {
   }
 
   attached() {
-    console.log('attached');
-    console.log(this.element);
-  }
-
-  bind(bindingContext, overrideContext) {
-    console.log('bound');
-    this.message = this.solar.message;
-    this.value = this.solar.message + ' bound';
     this.element.appendChild(this.solar.render());
   }
 
-  // This is a lifecycle method that is called when the component is destroyed
-  unbind() {
-    console.log('unbind');
+  bind(bindingContext, overrideContext) {
+    this.message = this.solar.message;
+    this.value = this.solar.message + ' bound';
   }
 }
