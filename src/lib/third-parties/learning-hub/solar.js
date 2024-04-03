@@ -4,6 +4,9 @@ export class Solar {
   }
 
   create() {
+    const host = document.createElement('div');
+    host.id = 'learning-hub';
+    host.classList.add('m3-learning-hub');
     customElements.define('app-root', class extends HTMLElement {
       constructor() {
         super();
@@ -11,22 +14,13 @@ export class Solar {
 
       connectedCallback() {
         console.log('Connected');
+        this.className = 'm3-app-root';	
       }
     });
-  }
 
-  container() {
-      // Create a new div
-      let div = document.createElement('div');
-      div.id = 'learning-hub';
+    host.appendChild(document.createElement('app-root'));
 
-      // Attach a shadow root to the div
-      let shadowRoot = div.attachShadow({mode: 'open'});
-
-      const root = document.createElement('app-root');
-      shadowRoot.appendChild(root);
-
-      return shadowRoot;
+    return host;
   }
 
   addStyles() {
@@ -56,6 +50,6 @@ export class Solar {
   render() {
     this.addStyles();
     this.createScripts();
-    return this.container();
+    return this.appRoot;
   }
 }
