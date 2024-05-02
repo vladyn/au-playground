@@ -11,8 +11,6 @@ describe('Stage App Component', () => {
       .inView('<app></app>');
   });
 
-  afterEach(() => component.dispose());
-
   it('should render message', done => {
     component.create(bootstrap).then(() => {
       const view = component.element;
@@ -24,4 +22,6 @@ describe('Stage App Component', () => {
       done();
     });
   });
+
+  afterEach(() => component.dispose());
 });
