@@ -1,5 +1,11 @@
 <template>
-  <player-provider media_url="allalaal"></player-provider>
+  <h5 textcontent.bind="value"></h5>
+  <select change.delegate="onChange()">
+    <option value="option1">Option 1</option>
+    <option value="option2">Option 2</option>
+    <option value="option3">Option 3</option>
+  </select>
+  <player-provider media_url="allalaal" response="${response}"></player-provider>
 </template>
 
 
