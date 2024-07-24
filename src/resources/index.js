@@ -16,4 +16,8 @@ export function configure(config) {
   config.globalResources(
     PLATFORM.moduleName('./elements/tabs/tabs')
   );
+
+  config.globalResources(
+    PLATFORM.moduleName('./elements/context-menu/context-menu')
+  );
 }

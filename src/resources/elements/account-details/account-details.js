@@ -14,6 +14,8 @@ import {PLATFORM} from 'aurelia-pal';
 @inject(Element)
 export class AccountDetails {
   @bindable message = "No details yet.";
+  @bindable firstName = "Bob";
+  @bindable lastName = "Brown";
 
   constructor(element) {
     this.element = element

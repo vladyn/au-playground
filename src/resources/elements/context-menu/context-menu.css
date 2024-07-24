@@ -1,0 +1,17 @@
+.context-menu {
+  position: absolute;
+  z-index: 1000;
+  background-color: olive;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  &.context-menu--visible {
+    display: block;
+  }
+  &.context-menu--hidden {
+    display: none;
+  }
+}
