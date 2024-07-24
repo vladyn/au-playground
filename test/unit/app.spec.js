@@ -23,5 +23,5 @@ describe('Stage App Component', () => {
     });
   });
 
-  afterEach(() => component.dispose());
+  //afterEach(() => component.dispose());
 });
