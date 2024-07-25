@@ -13,19 +13,25 @@ export class ContextMenu {
     this.element.addEventListener('click', (e) => {
       e.stopPropagation();
     });
-    document.addEventListener('click', (e) => {
-      console.log(this.contextMenu);
-      this.visible = !this.visible;
-      switch (this.visible) {
-        case true:
-          this.contextMenu.classList.add('context-menu--visible');
-          this.contextMenu.classList.remove('context-menu--hidden');
-          break;
-        case false:
-          this.contextMenu.classList.add('context-menu--hidden');
-          this.contextMenu.classList.remove('context-menu--visible');
-          break
+    document.addEventListener('mouseup', (e) => {
+      if (e.button === 2) {
+        this.visible = !this.visible;
+        switch (this.visible) {
+          case true:
+            this.contextMenu.classList.remove('context-menu--hidden');
+            this.contextMenu.classList.add('context-menu--visible');
+            break;
+          case false:
+            this.contextMenu.classList.remove('context-menu--visible');
+            this.contextMenu.classList.add('context-menu--hidden');
+            break
+        }
       }
     });
+  }
+
+  detached() {
+    this.element.removeEventListener('click', () => 'noop');
+    document.removeEventListener('mouseup', () => 'noop');
   }
 }
