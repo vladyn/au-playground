@@ -1,5 +1,7 @@
 .context-menu {
+  position-anchor: --anchortome;
   position: absolute;
+  inset-area: top span-all;
   z-index: 1000;
   background-color: olive;
   border: 1px solid #ccc;
@@ -14,4 +16,12 @@
   &.context-menu--hidden {
     display: none;
   }
+}
+
+.anchor {
+  anchor-name: --anchortome;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  border: 1px solid olive;
 }

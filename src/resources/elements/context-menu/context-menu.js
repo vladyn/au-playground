@@ -15,6 +15,11 @@ export class ContextMenu {
     });
     document.addEventListener('mouseup', (e) => {
       if (e.button === 2) {
+        // query a div with anchor class and remove it
+        const anchor = this.element.querySelector('.anchor');
+        anchor.style.left = `${e.clientX}px`;
+        anchor.style.top = `${e.clientY}px`;
+
         this.visible = !this.visible;
         switch (this.visible) {
           case true:
