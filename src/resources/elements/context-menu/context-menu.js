@@ -5,14 +5,21 @@ import { bindable, inject, customElement } from 'aurelia-framework';
 export class ContextMenu {
   @bindable visible = false;
   @bindable items = [];
-  constructor(element) {
+  constructor(element, replaceNativeContextMenu = true) {
     this.element = element;
+    this.replaceNativeContextMenu = replaceNativeContextMenu;
   }
+
   attached() {
     this.contextMenu = this.element.querySelector('.context-menu');
     this.element.addEventListener('click', (e) => {
       e.stopPropagation();
     });
+
+    document.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+    });
+
     document.addEventListener('mouseup', (e) => {
       const anchor = this.element.querySelector('.anchor');
       if (e.button === 2) {
@@ -22,7 +29,6 @@ export class ContextMenu {
       }
 
       if(e.button === 0 && this.visible && !e.target.closest('.context-menu')) {
-        console.log(e.target.closest('.context-menu'));
         this.toggle();
       } 
     });
@@ -45,5 +51,6 @@ export class ContextMenu {
   detached() {
     this.element.removeEventListener('click', () => 'noop');
     document.removeEventListener('mouseup', () => 'noop');
+    document.removeEventListener('contextmenu', () => 'noop');
   }
 }

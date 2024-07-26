@@ -19,10 +19,9 @@ describe('MyProfile', () => {
       const lastNameElement = document.querySelector('.lastName');
       expect(lastNameElement.innerHTML).toBe('Brown');
       done();
-    }).catch(e => { console.log(e.toString()) });
-  });
-
-  afterEach(() => {
-    component.dispose();
+    }).catch(e => { 
+      console.log(e.toString());
+      done();
+    });
   });
 });
