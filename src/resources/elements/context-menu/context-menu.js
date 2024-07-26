@@ -14,25 +14,32 @@ export class ContextMenu {
       e.stopPropagation();
     });
     document.addEventListener('mouseup', (e) => {
+      const anchor = this.element.querySelector('.anchor');
       if (e.button === 2) {
-        // query a div with anchor class and remove it
-        const anchor = this.element.querySelector('.anchor');
         anchor.style.left = `${e.clientX}px`;
         anchor.style.top = `${e.clientY}px`;
-
-        this.visible = !this.visible;
-        switch (this.visible) {
-          case true:
-            this.contextMenu.classList.remove('context-menu--hidden');
-            this.contextMenu.classList.add('context-menu--visible');
-            break;
-          case false:
-            this.contextMenu.classList.remove('context-menu--visible');
-            this.contextMenu.classList.add('context-menu--hidden');
-            break
-        }
+        this.toggle();
       }
+
+      if(e.button === 0 && this.visible && !e.target.closest('.context-menu')) {
+        console.log(e.target.closest('.context-menu'));
+        this.toggle();
+      } 
     });
+  }
+
+  toggle() {
+    this.visible = !this.visible;
+    switch (this.visible) {
+      case true:
+        this.contextMenu.classList.remove('context-menu--hidden');
+        this.contextMenu.classList.add('context-menu--visible');
+        break;
+      case false:
+        this.contextMenu.classList.remove('context-menu--visible');
+        this.contextMenu.classList.add('context-menu--hidden');
+        break
+    }
   }
 
   detached() {
