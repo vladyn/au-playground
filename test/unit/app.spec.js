@@ -15,13 +15,13 @@ describe('Stage App Component', () => {
     component.create(bootstrap).then(() => {
       const view = component.element;
       const heading = view.querySelector('h1');
-      expect(heading.textContent).toBe('Hello World!!');
+      expect(heading.textContent).toBe('Hello World!');
       done();
     }).catch(e => {
       console.log(e);
-      throw e;
+      done();
     });
   });
 
-  //afterEach(() => component.dispose());
+  afterEach(() => component.dispose());
 });

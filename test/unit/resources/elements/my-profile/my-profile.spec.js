@@ -7,7 +7,7 @@ describe('MyProfile', () => {
 
   beforeEach(() => {
     component = StageComponent
-      .withResources(PLATFORM.moduleName('my-profile'))
+      .withResources(PLATFORM.moduleName('../../src/resources/elements/my-profile/my-profile'))
       .inView('<my-profile first-name="Bob" last-name="Brown"></my-profile>')
       .boundTo({ firstName: 'Bob', lastName: 'Brown' });
   });

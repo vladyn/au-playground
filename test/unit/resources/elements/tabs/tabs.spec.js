@@ -7,18 +7,17 @@ describe('Tabs', () => {
 
   beforeEach(() => {
     component = StageComponent
-      .withResources(PLATFORM.moduleName('../../src/resources/elements/tabs'))
+      .withResources(PLATFORM.moduleName('../../src/resources/elements/tabs/tabs'))
       .inView('<tabs></tabs>');
   });
 
   it('should render tabs', done => {
     component.create(bootstrap).then(() => {
-      const tabsElement = document.querySelector('.tabs');
-      expect(tabsElement.innerHTML).toBe('');
+      const tabsElement = document.querySelector('tabs');
+      expect(tabsElement.querySelectorAll('div').length).toBe(2);
       done();
     }).catch(e => { 
-      console.log(e.toString());
-      done();
+      throw e;
     });
   });
 });

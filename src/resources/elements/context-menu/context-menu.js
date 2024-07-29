@@ -11,6 +11,9 @@ export class ContextMenu {
   }
 
   attached() {
+    if (!this.replaceNativeContextMenu) {
+      return;
+    }
     this.contextMenu = this.element.querySelector('.context-menu');
     this.element.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -25,7 +28,7 @@ export class ContextMenu {
       if (e.button === 2) {
         anchor.style.left = `${e.clientX}px`;
         anchor.style.top = `${e.clientY}px`;
-        this.toggle();
+        this.visible ? this.open() : this.toggle();
       }
 
       if(e.button === 0 && this.visible && !e.target.closest('.context-menu')) {
@@ -46,6 +49,18 @@ export class ContextMenu {
         this.contextMenu.classList.add('context-menu--hidden');
         break
     }
+  }
+
+  open() {
+    this.visible = true;
+    this.contextMenu.classList.remove('context-menu--hidden');
+    this.contextMenu.classList.add('context-menu--visible');
+  }
+
+  close() {
+    this.visible = false;
+    this.contextMenu.classList.remove('context-menu--visible');
+    this.contextMenu.classList.add('context-menu--hidden');
   }
 
   detached() {

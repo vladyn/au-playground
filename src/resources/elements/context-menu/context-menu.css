@@ -23,5 +23,7 @@
   width: 20px;
   height: 20px;
   position: absolute;
+  top: 0;
+  left: calc(100vw - 40px);
   border: 1px solid olive;
 }

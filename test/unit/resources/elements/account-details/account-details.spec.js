@@ -7,7 +7,7 @@ describe('AccountDetails', () => {
 
   beforeEach(() => {
     component = StageComponent
-      .withResources(PLATFORM.moduleName('account-details/account-details'))
+      .withResources(PLATFORM.moduleName('../../src/resources/elements/account-details/account-details'))
       .inView('<account-details></account-details>')
       .boundTo({ firstName: 'Bob', lastName: 'Brown' });
   });
@@ -15,7 +15,10 @@ describe('AccountDetails', () => {
   it('should render first name', done => {
     component.create(bootstrap).then(() => {
       const firstNameElement = document.querySelector('.accountDetails');
-      expect(firstNameElement.innerHTML).toBe('No details yet.');
+      const element = component.element;
+      const h1 = element.querySelector('h1');
+      expect(firstNameElement.innerHTML)
+      expect(h1.textContent).toBe('No details yet.');
       done();
     }).catch(e => { 
       console.log(e.toString());
