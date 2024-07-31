@@ -14,14 +14,18 @@ export class MenuRenderer {
     this.container = container;
   }
 
-  render(containerElement, html, viewModel) {
-    let viewFactory = this.viewCompiler.compile(html);
+  render(viewModel) {
+    const template = `
+        <template>
+          <context-menu visible.bind="visible"></context-menu>
+        </template>`;
+    let viewFactory = this.viewCompiler.compile(template);
     let view = viewFactory.create(this.container);
     let anchorIsContainer = true;
     let viewSlot = new ViewSlot(document.body, anchorIsContainer);
     viewSlot.add(view);
     viewSlot.attached();
-    viewSlot.bind();
+    viewSlot.bind(viewModel, createOverrideContext(viewModel));
     return () => {
       viewSlot.remove(view);
     };

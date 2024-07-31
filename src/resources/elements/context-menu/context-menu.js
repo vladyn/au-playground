@@ -5,6 +5,7 @@ import { bindable, inject, customElement } from 'aurelia-framework';
 export class ContextMenu {
   @bindable visible = false;
   @bindable items = [];
+  @bindable message = '';
   constructor(element, replaceNativeContextMenu = true) {
     this.element = element;
     this.replaceNativeContextMenu = replaceNativeContextMenu;
@@ -12,6 +13,7 @@ export class ContextMenu {
 
   bind(bindingContext) {
     console.log('bound', bindingContext);
+    this.message = bindingContext?.message;
   }
 
   attached() {
