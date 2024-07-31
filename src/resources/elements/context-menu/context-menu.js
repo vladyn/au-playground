@@ -10,6 +10,10 @@ export class ContextMenu {
     this.replaceNativeContextMenu = replaceNativeContextMenu;
   }
 
+  bind(bindingContext) {
+    console.log('bound', bindingContext);
+  }
+
   attached() {
     if (!this.replaceNativeContextMenu) {
       return;
