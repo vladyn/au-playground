@@ -14,7 +14,7 @@ export class MenuService {
     console.log(this.controller);
   }
 
-  renderMenu(menuData) {
-    this.menuRenderer.render(menuData);
+  renderMenu(viewModel) {
+    this.menuRenderer.render(viewModel);
   }
 }
