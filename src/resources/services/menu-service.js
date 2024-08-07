@@ -15,6 +15,6 @@ export class MenuService {
   }
 
   renderMenu(viewModel) {
-    this.menuRenderer.render(viewModel);
+    return this.menuRenderer.render(viewModel);
   }
 }

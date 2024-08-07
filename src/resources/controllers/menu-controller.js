@@ -6,6 +6,5 @@ export class MenuController {
   constructor(menuRenderer) {
     this.visible = false;
     this.renderer = menuRenderer;
-    this.message = 'Hello World!';
   }
 }

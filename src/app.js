@@ -18,7 +18,7 @@ export class App {
       visible: true
     };
     this.remove();
-    this.compose = this.contextMenuRenderer.render(viewModel);
+    this.compose = this.menuService.renderMenu(viewModel);
   }
 
   remove() {
