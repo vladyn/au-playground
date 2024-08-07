@@ -978,6 +978,13 @@
   resolved "https://registry.npmjs.org/@babel/regjsgen/-/regjsgen-0.8.0.tgz"
   integrity sha512-x/rqGMdzj+fWZvCOYForTghzbtqPDZ5gPwaoNGHdgDfF2QA/XZbCBp4Moo5scrkAMPhB7z26XM/AaHuIJdgauA==
 
+"@babel/runtime@^7.23.2", "@babel/runtime@^7.5.5":
+  version "7.25.0"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.25.0.tgz#3af9a91c1b739c569d5d80cc917280919c544ecb"
+  integrity sha512-7dRy4DwXwtzBrPbZflqxnvfxLF8kdZXPkhymtDeFoFqE6ldzjQFgYTtYIFARcLEYDrqfBfYcZt1WqFxRoyC9Rw==
+  dependencies:
+    regenerator-runtime "^0.14.0"
+
 "@babel/runtime@^7.8.4":
   version "7.23.9"
   resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.23.9.tgz"
@@ -2250,7 +2257,7 @@ aurelia-animator-css@^1.0.4:
     aurelia-pal "^1.0.0"
     aurelia-templating "^1.0.0"
 
-aurelia-binding@^2.0.0:
+aurelia-binding@^2.0.0, aurelia-binding@^2.5.4:
   version "2.5.4"
   resolved "https://registry.npmjs.org/aurelia-binding/-/aurelia-binding-2.5.4.tgz"
   integrity sha512-tYhYCFvQne+chO3p8KntCWj0r8oCXiCOGQ0yFbthHDBpjjTA4QlBwpGQ8nlGoGDKj7n4PoobeIjN3lEDKgKUyw==
@@ -2343,7 +2350,7 @@ aurelia-dependency-injection@^1.0.0, aurelia-dependency-injection@^1.3.0, aureli
     aurelia-metadata "^1.0.0"
     aurelia-pal "^1.0.0"
 
-aurelia-event-aggregator@^1.0.0:
+aurelia-event-aggregator@^1.0.0, aurelia-event-aggregator@^1.0.3:
   version "1.0.3"
   resolved "https://registry.npmjs.org/aurelia-event-aggregator/-/aurelia-event-aggregator-1.0.3.tgz"
   integrity sha512-8fSWNCgh3gIsq/MgE+njVnUlYS05D6acyC8aJECekNWYecdBz46ckEblywP1ZNHLIt3u/Ws0oMqiOp1Jjw+0hw==
@@ -2352,7 +2359,7 @@ aurelia-event-aggregator@^1.0.0:
 
 aurelia-framework@^1.4.1:
   version "1.4.1"
-  resolved "https://registry.npmjs.org/aurelia-framework/-/aurelia-framework-1.4.1.tgz"
+  resolved "https://registry.yarnpkg.com/aurelia-framework/-/aurelia-framework-1.4.1.tgz#76a76dfa555e3315daab4256c776434fb7932f43"
   integrity sha512-oFnJyqqIDk2Kk7iSy2YNm2MNQMbTVEiPpa9q0oGfDLclqUgv+L05rnkEW9vEpVTUMV8gmOTxIrDidNICrDT7HA==
   dependencies:
     aurelia-binding "^2.0.0"
@@ -2382,6 +2389,21 @@ aurelia-hot-module-reload@^0.3.0:
   version "0.3.0"
   resolved "https://registry.npmjs.org/aurelia-hot-module-reload/-/aurelia-hot-module-reload-0.3.0.tgz"
   integrity sha512-XBmELgRQ6qeVgjokRRhCuKjcaDjB2974g8PWKU1/3ZY/GoNl5SSeN6tqlsY1xQDcnWbyji/8UBSTtj4NSPKXPA==
+
+aurelia-i18n@^4.0.4:
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/aurelia-i18n/-/aurelia-i18n-4.0.4.tgz#322ddf6f3eee68e7425db07b0a7c3bceaaca9a80"
+  integrity sha512-9v2AGbAbXPzhtdc+Qvh+ygazqHzM912+MTz2Txad3GereX4jCI/2nCa878YExDDlvYX+fu8efuTjCqu3/3fcxg==
+  dependencies:
+    aurelia-binding "^2.5.4"
+    aurelia-dependency-injection "^1.5.2"
+    aurelia-event-aggregator "^1.0.3"
+    aurelia-loader "^1.0.2"
+    aurelia-logging "^1.5.2"
+    aurelia-metadata "^1.0.7"
+    aurelia-pal "^1.8.2"
+    aurelia-templating "^1.11.1"
+    aurelia-templating-resources "^1.14.3"
 
 aurelia-loader-default@^1.0.0:
   version "1.2.1"
@@ -2415,7 +2437,7 @@ aurelia-loader-webpack@^2.2.4:
     aurelia-metadata "^1.0.2"
     aurelia-pal "^1.1.1"
 
-aurelia-loader@^1.0.0:
+aurelia-loader@^1.0.0, aurelia-loader@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npmjs.org/aurelia-loader/-/aurelia-loader-1.0.2.tgz"
   integrity sha512-3owEe5Zsk8cIJG+zcxN6gzqUr2z2c+FKhtrL49e1j8vE4ccQQjXg+tvKFnfBVf3pwma6A474WsdK8poYhoVZyA==
@@ -2433,7 +2455,7 @@ aurelia-logging@^1.0.0, aurelia-logging@^1.5.2:
   resolved "https://registry.npmjs.org/aurelia-logging/-/aurelia-logging-1.5.2.tgz"
   integrity sha512-R0UdpGYBNSosBZ9WefmoIpgr36szFwQrRk2pbblhI+Vx911dUEEW85QXb6BRKVAP1ykz52Fuq8lCZxR6UupQXA==
 
-aurelia-metadata@^1.0.0, aurelia-metadata@^1.0.2:
+aurelia-metadata@^1.0.0, aurelia-metadata@^1.0.2, aurelia-metadata@^1.0.7:
   version "1.0.8"
   resolved "https://registry.npmjs.org/aurelia-metadata/-/aurelia-metadata-1.0.8.tgz"
   integrity sha512-Ty7k9F0KKtiaPVoHexU9V2SuvCYW6lieb+Vwjh0HyYPMo1I39DcJZ8ju+MO3im7FFA0QrivapJxJahXvE0dSCA==
@@ -2455,7 +2477,7 @@ aurelia-pal-nodejs@^2.0.0:
     aurelia-pal "^1.1.0"
     jsdom "^15.1.1"
 
-aurelia-pal@^1.0.0, aurelia-pal@^1.1.0, aurelia-pal@^1.1.1, aurelia-pal@^1.3.0, aurelia-pal@^1.4.0:
+aurelia-pal@^1.0.0, aurelia-pal@^1.1.0, aurelia-pal@^1.1.1, aurelia-pal@^1.3.0, aurelia-pal@^1.4.0, aurelia-pal@^1.8.2:
   version "1.8.2"
   resolved "https://registry.npmjs.org/aurelia-pal/-/aurelia-pal-1.8.2.tgz"
   integrity sha512-6erozUK5aaD88PvThs/L87kLsqxqPaBU59PGECr36v9yezhve0BHqpKgbtJ8haHJSiH80K9lsJtXfefedS/3sw==
@@ -2507,7 +2529,7 @@ aurelia-templating-binding@^1.6.0:
     aurelia-logging "^1.0.0"
     aurelia-templating "^1.11.1"
 
-aurelia-templating-resources@^1.14.1:
+aurelia-templating-resources@^1.14.1, aurelia-templating-resources@^1.14.3:
   version "1.15.1"
   resolved "https://registry.npmjs.org/aurelia-templating-resources/-/aurelia-templating-resources-1.15.1.tgz"
   integrity sha512-lmgP1LrXOSMxlxxb/L/RoxYVAOwKPMm7HKbUes6rdpbgN8VAVWn9/1OqRtlidkUvlX520MagzdcFAwnKMopBYw==
@@ -5435,6 +5457,20 @@ human-signals@^2.1.0:
   version "2.1.0"
   resolved "https://registry.npmjs.org/human-signals/-/human-signals-2.1.0.tgz"
   integrity sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==
+
+i18next-xhr-backend@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/i18next-xhr-backend/-/i18next-xhr-backend-3.2.2.tgz#769124441461b085291f539d91864e3691199178"
+  integrity sha512-OtRf2Vo3IqAxsttQbpjYnmMML12IMB5e0fc5B7qKJFLScitYaXa1OhMX0n0X/3vrfFlpHL9Ro/H+ps4Ej2j7QQ==
+  dependencies:
+    "@babel/runtime" "^7.5.5"
+
+i18next@^23.12.2:
+  version "23.12.2"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-23.12.2.tgz#c5b44bb95e4d4a5908a51577fa06c63dc2f650a4"
+  integrity sha512-XIeh5V+bi8SJSWGL3jqbTEBW5oD6rbP5L+E7dVQh1MNTxxYef0x15rhJVcRb7oiuq4jLtgy2SD8eFlf6P2cmqg==
+  dependencies:
+    "@babel/runtime" "^7.23.2"
 
 iconv-lite@0.4.24:
   version "0.4.24"

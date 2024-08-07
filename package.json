@@ -11,6 +11,10 @@
     "@angular/platform-browser": "^17.3.2",
     "aurelia-animator-css": "^1.0.4",
     "aurelia-bootstrapper": "^2.4.0",
+    "aurelia-framework": "^1.4.1",
+    "aurelia-i18n": "^4.0.4",
+    "i18next": "^23.12.2",
+    "i18next-xhr-backend": "^3.2.2",
     "jest-transform-pug": "^1.0.0",
     "pug-html-loader": "^1.1.5"
   },
