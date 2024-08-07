@@ -1,8 +1,8 @@
 {
-  "score": "Score: {{score}}",
-  "lives": "{{count}} life remaining",
-  "lives_plural": "{{count}} lives remaining",
-  "friend": "A friend",
-  "friend_male": "A boyfriend",
-  "friend_female": "A girlfriend"
+  "score": "Резултат: {{score}}",
+  "lives": "{{count}} оставаща кръв",
+  "lives_plural": "{{count}} живота остават",
+  "friend": "Приятел",
+  "friend_male": "Гадже (момче)",
+  "friend_female": "Гадже (момиче)"
 }

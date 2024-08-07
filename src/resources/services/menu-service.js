@@ -1,20 +1,17 @@
 import { inject } from "aurelia-framework";
+import { I18N } from 'aurelia-i18n';
 import { MenuRenderer } from "../rederers/menu-renderer";
 import { MenuController } from "../controllers/menu-controller";
 
-@inject(MenuRenderer, MenuController)
+@inject(MenuRenderer, MenuController, I18N)
 export class MenuService {
-  constructor(menuRenderer, menuController) {
+  constructor(menuRenderer, menuController, i18n) {
     this.menuRenderer = menuRenderer;
     this.controller = menuController;
-    console.log("MenuService constructor");
-    console.log(menuRenderer);
-    console.log(this.menuRenderer);
-    console.log(menuController);
-    console.log(this.controller);
+    this.i18n = i18n;
   }
 
   renderMenu(viewModel) {
-    return this.menuRenderer.render(viewModel);
+    return this.controller.renderMenu(viewModel);
   }
 }

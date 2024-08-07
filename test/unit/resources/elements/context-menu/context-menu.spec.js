@@ -3,6 +3,12 @@ import { StageComponent }  from "aurelia-testing";
 import { bootstrap }        from "aurelia-bootstrapper";
 import { PLATFORM }         from "aurelia-pal";
 
+// jest mock required css
+jest.mock('../src/resources/elements/context-menu/context-menu.css', () => {
+  return {
+    default: ''
+  };
+});
 
 describe('ContextMenu', () => {
   let component;

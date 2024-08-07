@@ -7,4 +7,12 @@ export class MenuController {
     this.visible = false;
     this.renderer = menuRenderer;
   }
+
+  renderMenu(viewModel) {
+    return this.renderer.render(viewModel);
+  }
+
+  closeMenu() {
+    this.visible = false;
+  }
 }
