@@ -1,18 +1,21 @@
-import {inject} from 'aurelia-framework';
-import {MenuRenderer} from '../rederers/menu-renderer';
-
-@inject(MenuRenderer)
 export class MenuController {
   constructor(menuRenderer) {
-    this.visible = false;
+    this.visible = true;
     this.renderer = menuRenderer;
   }
 
   renderMenu(viewModel) {
-    return this.renderer.render(viewModel);
+    const mergedViewModel = Object.assign({}, viewModel, { visible: this.visible });
+    return this.renderer.render(mergedViewModel);
   }
 
   closeMenu() {
     this.visible = false;
+    return this.renderer.closeMenu();
+  }
+
+  openMenu() {
+    this.visible = true;
+    return this.renderer.openMenu();
   }
 }

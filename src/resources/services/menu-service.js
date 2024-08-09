@@ -3,15 +3,22 @@ import { I18N } from 'aurelia-i18n';
 import { MenuRenderer } from "../rederers/menu-renderer";
 import { MenuController } from "../controllers/menu-controller";
 
-@inject(MenuRenderer, MenuController, I18N)
+@inject(MenuRenderer, I18N)
 export class MenuService {
-  constructor(menuRenderer, menuController, i18n) {
+  constructor(menuRenderer, i18n) {
     this.menuRenderer = menuRenderer;
-    this.controller = menuController;
     this.i18n = i18n;
+    console.log(this.i18n.tr('score'));
+    console.log(this.i18n.getLocale());
+    console.log(this.i18n);
+    this.controller = new MenuController(menuRenderer);
   }
 
   renderMenu(viewModel) {
     return this.controller.renderMenu(viewModel);
+  }
+
+  closeMenu() {
+    return this.controller.closeMenu();
   }
 }

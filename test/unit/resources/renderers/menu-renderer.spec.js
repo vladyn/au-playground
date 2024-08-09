@@ -1,46 +1,29 @@
 import {StageComponent, ComponentTester, CompileSpy, ViewSpy} from 'aurelia-testing';
+import { MenuRenderer} from "../../../../src/resources/rederers/menu-renderer";
 import {bootstrap} from 'aurelia-bootstrapper';
 import {PLATFORM} from 'aurelia-pal';
 
 describe('MenuRenderer', () => {
   let renderer;
+  let compileSpy;
+  let viewSpy;
 
   beforeEach(() => {
-    renderer = StageComponent
-      .withResources(PLATFORM.moduleName('../../src/resources/renderers/menu-renderer'))
-      .inView('<context-menu></context-menu>');
+    // mock using jest
+    compileSpy = jest.fn();
+    compileSpy.compile = jest.fn(() => ({create: jest.fn()}));
+    const container = document.createElement('div');
+    compileSpy.compile();
+    renderer = new MenuRenderer(compileSpy, container);
+    console.log(renderer);
   });
-
-  it('can manually handle lifecycle', done => {
-    let nameElement;
-
-    renderer.manuallyHandleLifecycle().create(bootstrap)
-      .then(() => {
-        nameElement = document.querySelector('.name');
-        expect(nameElement.innerHTML).toBe(' ');
-      })
-      .then(() => renderer.bind())
-      .then(() => {
-        expect(nameElement.innerHTML).toBe('Foo bind');
-      })
-      .then(() => renderer.attached())
-      .then(() => {
-        expect(nameElement.innerHTML).toBe('Foo attached');
-      })
-      .then(() => renderer.detached())
-      .then(() => renderer.unbind())
-      .then(() => {
-        expect(renderer.viewModel.name).toBe(null);
-      })
-      .then(() => renderer.bind({ name: 'Bar' }))
-      .then(() => {
-        expect(nameElement.innerHTML).toBe('Bar bind');
-      })
-      .then(() => renderer.attached())
-      .then(() => {
-        expect(nameElement.innerHTML).toBe('Bar attached');
-      })
-      .then(done);
+  it('should render a menu', () => {
+    const viewModel = {
+      message: 'hello world',
+      visible: false
+    };
+    renderer.render(viewModel);
+    expect(compileSpy).toHaveBeenCalled();
   });
 
   afterEach(() => renderer.dispose());

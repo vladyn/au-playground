@@ -6,6 +6,8 @@
 
   <account-details message="Blias!"></account-details>
   <!-- <context-menu visible.bind="visible"></context-menu> -->
+  <button click.delegate="visible = !visible">Toggle Context Menu visible: ${visible}</button>
+  <button click.trigger="openMenuClick()">Open menu Click</button>
 
     <tabs>
       <tab header="Top Movies">

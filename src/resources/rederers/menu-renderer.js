@@ -1,16 +1,14 @@
 import {
   inject,
   ViewCompiler,
-  ViewResources,
   Container,
   ViewSlot,
   createOverrideContext
 } from 'aurelia-framework';
-@inject(ViewCompiler, ViewResources, Container)
+@inject(ViewCompiler, Container)
 export class MenuRenderer {
-  constructor(viewCompiler, resources, container) {
+  constructor(viewCompiler, container) {
     this.viewCompiler = viewCompiler;
-    this.resources = resources;
     this.container = container;
   }
 
@@ -29,5 +27,19 @@ export class MenuRenderer {
     return () => {
       viewSlot.remove(view);
     };
+  }
+
+  closeMenu() {
+    const contextMenu = document.querySelector('context-menu');
+    contextMenu.visible = false;
+    return contextMenu;
+  }
+
+  openMenu() {
+    const contextMenu = document.querySelector('context-menu');
+    // change attribute visible = true;
+    contextMenu.visible = false;
+
+    return contextMenu;
   }
 }

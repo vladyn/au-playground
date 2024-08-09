@@ -23,6 +23,8 @@ export function configure(aurelia) {
         attributes: aliases,
         lng : 'bg',
         fallbackLng : 'en',
+        ns: ['app', 'moduleA', 'moduleB'],
+        defaultNS: 'app',
         debug : false
       });
     });

@@ -15,10 +15,22 @@ export class App {
   attached() {
     let viewModel = {
       message: 'hello world',
-      visible: true
+      visible: false
     };
     this.remove();
     this.compose = this.menuService.renderMenu(viewModel);
+  }
+
+  valueChanged(newValue, oldValue) {
+    console.log('value changed', newValue, oldValue);
+  }
+
+  closeMenuClick() {
+    this.menuService.controller.closeMenu();
+  }
+
+  openMenuClick() {
+    this.menuService.controller.openMenu();
   }
 
   remove() {

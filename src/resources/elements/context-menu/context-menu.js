@@ -3,7 +3,7 @@ import { bindable, inject, customElement } from 'aurelia-framework';
 @inject(Element)
 @customElement('context-menu')
 export class ContextMenu {
-  @bindable visible = false;
+  @bindable visible = true;
   @bindable items = [];
   @bindable message = '';
   constructor(element, replaceNativeContextMenu = true) {
@@ -14,20 +14,11 @@ export class ContextMenu {
   bind(bindingContext) {
     console.log('bound', bindingContext);
     this.message = bindingContext?.message;
-  }
+    this.visible = bindingContext?.visible;
 
-  attached() {
-    if (!this.replaceNativeContextMenu) {
+    if (!this.visible) {
       return;
     }
-    this.contextMenu = this.element.querySelector('.context-menu');
-    this.element.addEventListener('click', (e) => {
-      e.stopPropagation();
-    });
-
-    document.addEventListener('contextmenu', (e) => {
-      e.preventDefault();
-    });
 
     document.addEventListener('mouseup', (e) => {
       const anchor = this.element.querySelector('.anchor');
@@ -39,7 +30,17 @@ export class ContextMenu {
 
       if(e.button === 0 && this.visible && !e.target.closest('.context-menu')) {
         this.toggle();
-      } 
+      }
+    });
+  }
+
+  attached() {
+    this.contextMenu = this.element.querySelector('.context-menu');
+    this.element.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+    document.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
     });
   }
 
