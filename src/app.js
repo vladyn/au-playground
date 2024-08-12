@@ -13,16 +13,11 @@ export class App {
   }
 
   attached() {
-    let viewModel = {
+    const viewModel = {
       message: 'hello world',
-      visible: false
+      visible: true
     };
-    this.remove();
     this.compose = this.menuService.renderMenu(viewModel);
-  }
-
-  valueChanged(newValue, oldValue) {
-    console.log('value changed', newValue, oldValue);
   }
 
   closeMenuClick() {
@@ -31,12 +26,5 @@ export class App {
 
   openMenuClick() {
     this.menuService.controller.openMenu();
-  }
-
-  remove() {
-    if (this.compose) {
-      this.compose();
-      this.compose = null;
-    }
   }
 }

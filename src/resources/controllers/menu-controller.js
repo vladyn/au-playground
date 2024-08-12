@@ -5,7 +5,7 @@ export class MenuController {
   }
 
   renderMenu(viewModel) {
-    const mergedViewModel = Object.assign({}, viewModel, { visible: this.visible });
+    const mergedViewModel = {...viewModel,  visible: this.visible };
     return this.renderer.render(mergedViewModel);
   }
 
