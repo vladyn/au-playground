@@ -30,8 +30,6 @@ export class MenuRenderer {
   }
 
   closeMenu() {
-    const contextMenu = document.querySelector('context-menu');
-    console.log(contextMenu);
     console.log(this.viewSlot);
   }
 
