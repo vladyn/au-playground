@@ -21,4 +21,8 @@ export class MenuService {
   closeMenu() {
     return this.controller.closeMenu();
   }
+
+  openMenu() {
+    return this.controller.openMenu();
+  }
 }

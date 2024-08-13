@@ -14,8 +14,9 @@ export class MenuController {
     return this.renderer.closeMenu();
   }
 
-  openMenu() {
+  openMenu(viewModel) {
     this.visible = true;
-    return this.renderer.openMenu();
+    const mergedViewModel = {message: 'BLIAS!!!',  visible: this.visible };
+    return this.renderer.openMenu(mergedViewModel);
   }
 }

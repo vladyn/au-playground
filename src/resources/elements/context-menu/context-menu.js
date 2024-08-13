@@ -3,9 +3,9 @@ import { bindable, inject, customElement } from 'aurelia-framework';
 @inject(Element)
 @customElement('context-menu')
 export class ContextMenu {
-  @bindable visible = false;
   @bindable items = [];
   @bindable message = '';
+  visible = false;
   constructor(element, replaceNativeContextMenu = true) {
     this.element = element;
     this.replaceNativeContextMenu = replaceNativeContextMenu;
@@ -21,7 +21,7 @@ export class ContextMenu {
     }
 
     document.addEventListener('mouseup', (e) => {
-      console.log(this.visible);
+      console.log('binding context visible is: ', bindingContext?.visible);
       const anchor = this.element.querySelector('.anchor');
       if (e.button === 2) {
         anchor.style.left = `${e.clientX}px`;

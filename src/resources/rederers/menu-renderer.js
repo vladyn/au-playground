@@ -17,7 +17,7 @@ export class MenuRenderer {
   render(viewModel) {
     const template = `
         <template>
-          <context-menu visible.bind="visible"></context-menu>
+          <context-menu></context-menu>
         </template>`;
     const viewFactory = this.viewCompiler.compile(template);
     const view = viewFactory.create(this.container);
@@ -26,9 +26,7 @@ export class MenuRenderer {
     this.viewSlot.add(view);
     this.viewSlot.attached();
     this.viewSlot.bind(viewModel, createOverrideContext(viewModel));
-    return () => {
-      this.viewSlot.remove(view);
-    };
+
   }
 
   closeMenu() {
@@ -37,10 +35,8 @@ export class MenuRenderer {
     console.log(this.viewSlot);
   }
 
-  openMenu() {
-    const contextMenu = document.querySelector('context-menu');
-    console.log(contextMenu);
-    console.log(this.viewSlot.bindingContext.visible);
-    this.viewSlot.bindingContext.visible = true;
+  openMenu(viewModel) {
+    console.log(this.viewSlot);
+    this.viewSlot.bind(viewModel, createOverrideContext(viewModel));
   }
 }
