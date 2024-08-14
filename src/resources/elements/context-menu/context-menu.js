@@ -3,7 +3,6 @@ import { bindable, inject, customElement } from 'aurelia-framework';
 @inject(Element)
 @customElement('context-menu')
 export class ContextMenu {
-  @bindable items = [];
   @bindable message = '';
   visible = false;
   constructor(element, replaceNativeContextMenu = true) {
@@ -12,9 +11,9 @@ export class ContextMenu {
   }
 
   bind(bindingContext) {
-    console.log('bound', bindingContext);
     this.message = bindingContext?.message;
     this.visible = bindingContext?.visible;
+    this.items = bindingContext?.itemsModel;
 
     if (!this.visible) {
       return;

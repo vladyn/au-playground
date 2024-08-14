@@ -5,10 +5,7 @@
     <slot>${message}</slot>
     <h1>${message}</h1>
     <menu>
-      <li><a href="">Copy</a></li>
-      <li><a href="">Paste</a></li>
-      <li><a href="">Cut</a></li>
-      <li><a href="">Delete</a></li>
+      <li repeat.for="item of items"><a href.bind="item.link">${item.label}</a></li>
     </menu>
   </div>
 </template>

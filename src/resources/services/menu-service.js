@@ -22,7 +22,7 @@ export class MenuService {
     return this.controller.closeMenu();
   }
 
-  openMenu() {
-    return this.controller.openMenu();
+  openMenu(viewModel) {
+    return this.controller.openMenu(viewModel);
   }
 }

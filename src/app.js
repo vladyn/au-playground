@@ -15,9 +15,27 @@ export class App {
   attached() {
     const viewModel = {
       message: 'hello world',
-      visible: true
+      visible: true,
+      itemsModel: [
+        {
+          "label": "Copy",
+          "link": "https://copy.com"
+        },
+        {
+          "label": "Cut",
+          "link": "https://cut.com"
+        },
+        {
+          "label": "Paste",
+          "link": "https://paste.com"
+        },
+        {
+          "label": "Delete",
+          "link": "https://delete.com"
+        }
+      ],
     };
-    this.compose = this.menuService.renderMenu(viewModel);
+    this.menuService.renderMenu(viewModel);
   }
 
   closeMenuClick() {

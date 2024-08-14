@@ -26,7 +26,6 @@ export class MenuRenderer {
     this.viewSlot.add(view);
     this.viewSlot.attached();
     this.viewSlot.bind(viewModel, createOverrideContext(viewModel));
-
   }
 
   closeMenu() {
