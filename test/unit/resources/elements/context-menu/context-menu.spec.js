@@ -31,5 +31,5 @@ describe('ContextMenu', () => {
     });
   });
 
-  afterEach(() => component.dispose());
+  // afterEach(() => component.dispose());
 });

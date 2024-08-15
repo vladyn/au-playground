@@ -15,7 +15,6 @@ describe('MenuRenderer', () => {
     const container = document.createElement('div');
     compileSpy.compile();
     renderer = new MenuRenderer(compileSpy, container);
-    console.log(renderer);
   });
   it('should render a menu', () => {
     const viewModel = {
@@ -26,5 +25,5 @@ describe('MenuRenderer', () => {
     expect(compileSpy).toHaveBeenCalled();
   });
 
-  afterEach(() => renderer.dispose());
+  // afterEach(() => renderer.dispose());
 });
