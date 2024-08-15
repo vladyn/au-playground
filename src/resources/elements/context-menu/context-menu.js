@@ -5,6 +5,8 @@ import { bindable, inject, customElement } from 'aurelia-framework';
 export class ContextMenu {
   @bindable message = '';
   visible = false;
+  @bindable items = [];
+
   constructor(element, replaceNativeContextMenu = true) {
     this.element = element;
     this.replaceNativeContextMenu = replaceNativeContextMenu;
@@ -42,6 +44,10 @@ export class ContextMenu {
     document.addEventListener('contextmenu', (e) => {
       e.preventDefault();
     });
+  }
+
+  itemsChanged(oldValue, newValue) {
+    console.log('items changed: ', oldValue, newValue)
   }
 
   toggle() {
