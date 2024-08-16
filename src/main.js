@@ -1,6 +1,7 @@
 import environment from '../config/environment.json';
 import {PLATFORM} from 'aurelia-pal';
-import {I18N, Backend, TCustomAttribute} from 'aurelia-i18n';
+import {TCustomAttribute} from 'aurelia-i18n';
+import Backend from 'i18next-xhr-backend'; // <-- your previously installed backend plugin
 
 export function configure(aurelia) {
   aurelia.use
@@ -12,20 +13,20 @@ export function configure(aurelia) {
       TCustomAttribute.configureAliases(aliases);
 
       // register backend plugin
-      instance.i18next.use(Backend.with(aurelia.loader));
+      instance.i18next.use(Backend);
 
       // adapt options to your needs (see https://i18next.com/docs/options/)
       // make sure to return the promise of the setup method, in order to guarantee proper loading
       return instance.setup({
         backend: {                                  // <-- configure backend settings
-          loadPath: './locales/{{lng}}/{{ns}}.json', // <-- XHR settings for where to get the files from
+          loadPath: 'locales/{{lng}}/{{ns}}.json', // <-- XHR settings for where to get the files from
         },
         attributes: aliases,
         lng : 'bg',
         fallbackLng : 'en',
-        ns: ['app', 'moduleA', 'moduleB'],
+        ns: ['app'],
         defaultNS: 'app',
-        debug : false
+        debug : true
       });
     });
 

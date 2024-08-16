@@ -9,7 +9,6 @@ export class MenuService {
     this.menuRenderer = menuRenderer;
     this.i18n = i18n;
     console.log(this.i18n.tr('score'));
-    console.log(this.i18n.getLocale());
     this.controller = new MenuController(menuRenderer);
   }
 
