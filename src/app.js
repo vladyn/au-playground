@@ -4,7 +4,6 @@ import { MenuService } from "./resources/services/menu-service";
 
 @inject(MenuRenderer, MenuService)
 export class App {
-  visible = false;
   message = 'Hello World!';
 
   constructor(contextMenuRenderer, menuService) {
