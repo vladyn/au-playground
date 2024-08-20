@@ -30,10 +30,10 @@ export class MenuRenderer {
 
   closeMenu() {
     console.log(this.viewSlot);
+    this.viewSlot.removeAll();
   }
 
   openMenu(viewModel) {
-    console.log(this.viewSlot);
-    this.viewSlot.bind(viewModel, createOverrideContext(viewModel));
+    this.render(viewModel);
   }
 }
