@@ -4,8 +4,8 @@ import { MenuService } from "./resources/services/menu-service";
 
 @inject(MenuRenderer, MenuService)
 export class App {
-  visible = false;
   message = 'Hello World!';
+  viewModel = {};
 
   constructor(contextMenuRenderer, menuService) {
     this.contextMenuRenderer = contextMenuRenderer;
@@ -13,7 +13,7 @@ export class App {
   }
 
   attached() {
-    const viewModel = {
+    this.viewModel = {
       message: 'hello world',
       visible: true,
       itemsModel: [
@@ -35,7 +35,7 @@ export class App {
         }
       ],
     };
-    this.menuService.renderMenu(viewModel);
+    this.menuService.renderMenu(this.viewModel);
   }
 
   closeMenuClick() {
@@ -43,6 +43,6 @@ export class App {
   }
 
   openMenuClick() {
-    this.menuService.controller.openMenu();
+    this.menuService.controller.openMenu(this.viewModel);
   }
 }
