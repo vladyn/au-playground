@@ -8,7 +8,6 @@ export class MenuService {
   constructor(menuRenderer, i18n) {
     this.menuRenderer = menuRenderer;
     this.i18n = i18n;
-    console.log(this.i18n.tr('score'));
     this.controller = new MenuController(menuRenderer);
   }
 
