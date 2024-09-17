@@ -1,0 +1,11 @@
+<template>
+  <require from="./context-menu.css"></require>
+  <div class="anchor"></div>
+  <div class="context-menu">
+    <slot>${message}</slot>
+    <h1>${message}</h1>
+    <menu>
+      <li repeat.for="item of items"><a href.bind="item.link">${item.label}</a></li>
+    </menu>
+  </div>
+</template>

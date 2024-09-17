@@ -7,7 +7,7 @@ describe('MyProfile', () => {
 
   beforeEach(() => {
     component = StageComponent
-      .withResources(PLATFORM.moduleName('my-profile'))
+      .withResources(PLATFORM.moduleName('../../src/resources/elements/my-profile/my-profile'))
       .inView('<my-profile first-name="Bob" last-name="Brown"></my-profile>')
       .boundTo({ firstName: 'Bob', lastName: 'Brown' });
   });
@@ -19,10 +19,9 @@ describe('MyProfile', () => {
       const lastNameElement = document.querySelector('.lastName');
       expect(lastNameElement.innerHTML).toBe('Brown');
       done();
-    }).catch(e => { console.log(e.toString()) });
-  });
-
-  afterEach(() => {
-    component.dispose();
+    }).catch(e => { 
+      console.log(e.toString());
+      done();
+    });
   });
 });

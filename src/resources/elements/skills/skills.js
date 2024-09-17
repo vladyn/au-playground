@@ -1,5 +1,5 @@
 import {bindable, inject} from 'aurelia-framework';
-import { Solar } from '../../lib/third-parties/learning-hub/solar.js';
+import { Solar } from '../../../lib/third-parties/learning-hub/solar.js';
 
 @inject(Element)
 export class Skills {

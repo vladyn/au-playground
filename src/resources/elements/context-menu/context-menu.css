@@ -1,0 +1,29 @@
+.context-menu {
+  position-anchor: --anchortome;
+  position: absolute;
+  inset-area: top span-all;
+  z-index: 1000;
+  background-color: olive;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  &.context-menu--visible {
+    display: block;
+  }
+  &.context-menu--hidden {
+    display: none;
+  }
+}
+
+.anchor {
+  anchor-name: --anchortome;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 100px;
+  left: calc(100vw - 40px);
+  border: 1px solid olive;
+}

@@ -1,17 +1,13 @@
 <template>
   <h1>${message}</h1>
-  <require from="./my-profile"></require>
   <div as-element="my-profile" first-name="John" last-name="Doe"></div>
   <my-profile first-name="Jane" last-name="Smith"></my-profile>
   <my-profile name="Jane"></my-profile>
 
-  <require from="./account-details"></require>
   <account-details message="Blias!"></account-details>
+  <button click.trigger="openMenuClick()">Open menu Click</button>
+  <button click.trigger="closeMenuClick()">Close menu Click</button>
 
-  <require from="./resources/elements/skills"></require>
-  <skills></skills>
-
-  <require from="./tabs"></require>
     <tabs>
       <tab header="Top Movies">
         <ul>
@@ -33,4 +29,5 @@
       </tab>
       <tab header="Recently Added"> Nothing to see here. </tab>
     </tabs>
+    <skills></skills>
 </template>

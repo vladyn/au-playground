@@ -1,5 +1,4 @@
-import { inject, customElement, bindable, useView, processContent } from 'aurelia-framework';
-import {PLATFORM} from 'aurelia-pal';
+import { inject, customElement, bindable, processContent } from 'aurelia-framework';
 @processContent((compiler, resources, node, instruction) => {
   const contentTemplate = document.createElement("template");
   contentTemplate.setAttribute("replace-part", "content");
@@ -9,11 +8,13 @@ import {PLATFORM} from 'aurelia-pal';
   node.append(contentTemplate);
   return true;
 })
-@useView(PLATFORM.moduleName('./account-details.jade'))
+
 @customElement('account-details')
 @inject(Element)
 export class AccountDetails {
   @bindable message = "No details yet.";
+  @bindable firstName = "Bob";
+  @bindable lastName = "Brown";
 
   constructor(element) {
     this.element = element
