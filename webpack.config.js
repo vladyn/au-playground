@@ -252,7 +252,8 @@ module.exports = ({ production }, { analyze, hmr, port, host }) => ({
     new CopyWebpackPlugin({
       patterns: [
         { from: 'src/static', to: outDir, globOptions: { ignore: ['.*'] } },
-        { from: 'src/locales/', to: 'locales/' }
+        { from: 'src/locales/', to: 'locales/' },
+        { from: 'src/lib/', to: outDir + '/lib/' }
       ]
     }), // ignore dot (hidden) files
     ...when(analyze, new BundleAnalyzerPlugin()),

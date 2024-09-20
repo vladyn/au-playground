@@ -1,50 +1,51 @@
 export class Solar {
   constructor() {
-    this.iframe = this.createIframe();
     this.appRoot = this.create();
   }
 
   create() {
-    /**
-     * Check is the element is not already defined and if so, return it's constructor call
-     */
-    const Container = customElements.get('solar-element');
-    if (Container) return new Container();
+    let template = document.createElement("template");
+    template.innerHTML = `
+      <style>
+      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+        :host {
+          display: block;
+          padding: 10px;
+          color: var(--x-foo-text-color, black);
+          background-color: var(--x-foo-background-color, white);
+        }
+        h1 {
+          color: red;
+        }
+      </style>
+      <link rel="stylesheets" href="http://localhost:8080/lib/styles.css"></style>
+      <h1>Hello, Shadow DOM!</h1>
+    `;
 
-    const frame = this.iframe;
-
-    /**
-     * Define a custom element and add it to the  Shadow DOM
-     */
     customElements.define(
-      'solar-element',
+      "learning-hub",
       class extends HTMLElement {
         constructor() {
-          super();
+          super(); 
+          const shadowRoot = this.attachShadow({ mode: 'open' });
+          shadowRoot.appendChild(template.content.cloneNode(true));
         }
 
         connectedCallback() {
-          this.id = 'solar-element';
-          this.appendChild(frame);
+          this.id = "learning-hub";
+          const s1 = document.createElement('script');
+          s1.type = 'module'
+          s1.src = 'http://localhost:8080/lib/main.js'
+          this.shadowRoot.appendChild(s1);
         }
       }
     );
 
-    const appRoot = document.createElement('solar-element');
+    const appRoot = document.createElement("learning-hub");
     return appRoot;
   }
 
   render() {
     return this.appRoot;
-  }
-
-  createIframe() {
-    const iframe = document.createElement('iframe');
-    iframe.src = 'solar-element.html';
-    iframe.width = '100%';
-    iframe.height = '920px';
-    iframe.allow = 'fullscreen';
-    iframe.id = 'learning-frame';
-    return iframe;
   }
 }
