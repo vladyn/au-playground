@@ -20,4 +20,8 @@ export function configure(config) {
   config.globalResources(
     PLATFORM.moduleName('./elements/context-menu/context-menu')
   );
+
+  config.globalResources(
+    PLATFORM.moduleName('./value-converters/sum-format-value-converter')
+  ); 
 }

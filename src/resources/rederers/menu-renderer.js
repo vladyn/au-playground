@@ -29,7 +29,6 @@ export class MenuRenderer {
   }
 
   closeMenu() {
-    console.log(this.viewSlot);
     this.viewSlot.removeAll();
   }
 

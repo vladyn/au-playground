@@ -6,6 +6,9 @@ import { MenuService } from "./resources/services/menu-service";
 export class App {
   message = 'Hello World!';
   viewModel = {};
+  isMenuVisible = true;
+  currency = 'BGN';
+  amount = 123456.789;
 
   constructor(contextMenuRenderer, menuService) {
     this.contextMenuRenderer = contextMenuRenderer;
@@ -38,11 +41,17 @@ export class App {
     this.menuService.renderMenu(this.viewModel);
   }
 
+  toggleMenu() {
+    this.isMenuVisible = !this.isMenuVisible;
+  }
+
   closeMenuClick() {
     this.menuService.controller.closeMenu();
+    this.toggleMenu();
   }
 
   openMenuClick() {
     this.menuService.controller.openMenu(this.viewModel);
+    this.toggleMenu();
   }
 }
