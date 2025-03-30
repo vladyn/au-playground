@@ -1,13 +1,52 @@
 import { thousandsSeparator } from '../utils/thousands-separator';
+import { inject } from 'aurelia-framework';
+import { CurrencyService } from '../services/currency-service';
 
+@inject(CurrencyService)
 export class SumFormatValueConverter {
+  constructor(currencyService) {
+    this.currencyService = currencyService;
+    this.defaultCurrency = this.currencyService.getDefaultCurrency();
+    console.log(
+      'SumFormatValueConverter initialized with default currency:',
+      this.defaultCurrency
+    );
+    console.log('CurrencyService:', this.currencyService);
+  }
+
   toView(value) {
-    const formattedValue = (typeof value === 'number' || Number.isFinite(value)) && value !== null ? { amount: value, currency: 'EUR' } : value;
-    if (formattedValue === undefined || formattedValue === null || formattedValue === '' || formattedValue.amount === undefined) {
+    const formattedValue = this._normalizeValue(value);
+    if (!this._isValidFormattedValue(formattedValue)) {
       return;
     }
 
-    // Format to proper type
+    this._formatAmount(formattedValue);
+
+    if (!formattedValue.currency) {
+      return '';
+    }
+
+    const currency = this._extractCurrency(formattedValue.currency);
+    return this._formatOutput(formattedValue.amount, currency);
+  }
+
+  _normalizeValue(value) {
+    if (typeof value === 'number' || Number.isFinite(value)) {
+      return { amount: value, currency: this.defaultCurrency };
+    }
+    return value;
+  }
+
+  _isValidFormattedValue(formattedValue) {
+    return (
+      formattedValue &&
+      formattedValue.amount !== undefined &&
+      formattedValue !== '' &&
+      formattedValue !== null
+    );
+  }
+
+  _formatAmount(formattedValue) {
     if (formattedValue.amount % 1 !== 0) {
       if (!Number.isNaN(formattedValue.amount)) {
         formattedValue.amount = Number.parseFloat(formattedValue.amount);
@@ -16,22 +55,19 @@ export class SumFormatValueConverter {
     } else {
       formattedValue.amount = Number.parseInt(formattedValue.amount);
     }
+  }
 
-    if (!formattedValue.currency) {
-      return '';
-    }
+  _extractCurrency(currency) {
+    const index = currency.indexOf(':');
+    return index !== -1 ? currency.substring(index + 2) : currency;
+  }
 
-    const index = formattedValue.currency.indexOf(':');
-    let currency = formattedValue.currency;
-    if (index !== -1) {
-      currency = value.currency.substring(index + 2);
-    }
+  _formatOutput(amount, currency) {
     return `${thousandsSeparator(
       new Intl.NumberFormat('bg-BG', {
         style: 'currency',
         currency: currency
-      })
-      .format(formattedValue.amount)
+      }).format(amount)
     )}`;
   }
 }

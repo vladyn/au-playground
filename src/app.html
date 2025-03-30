@@ -4,9 +4,11 @@
   <my-profile first-name="Jane" last-name="Smith"></my-profile>
   <my-profile name="Jane"></my-profile>
 
+  <input type="text" value.bind="amount | sumFormat">
+
   <account-details message="Blias!"></account-details>
-  <button click.trigger="openMenuClick()">Enable the context menu</button>
-  <button click.trigger="closeMenuClick()">Disable the context menu</button>
+  <button click.trigger="openMenuClick()" disabled.bind="isMenuVisible">Enable the context menu</button>
+  <button click.trigger="closeMenuClick()" disabled.bind="!isMenuVisible">Disable the context menu</button>
 
     <tabs>
       <tab header="Top Movies">
