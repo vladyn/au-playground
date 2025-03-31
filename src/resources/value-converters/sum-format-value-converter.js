@@ -27,7 +27,7 @@ export class SumFormatValueConverter {
     }
 
     const currency = this._extractCurrency(formattedValue.currency);
-    return this._formatOutput(formattedValue.amount, currency);
+    return `${this._formatOutput(formattedValue.amount, currency)} (${this._formatOutput(formattedValue.amount, 'BGN')})`;
   }
 
   _normalizeValue(value) {
