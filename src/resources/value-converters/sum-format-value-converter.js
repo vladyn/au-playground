@@ -7,9 +7,14 @@ export class SumFormatValueConverter {
   constructor(currencyService) {
     this.currencyService = currencyService;
     this.defaultCurrency = this.currencyService.getDefaultCurrency();
+    this.currency = this.currencyService.getCurrency();
     console.log(
       'SumFormatValueConverter initialized with default currency:',
       this.defaultCurrency
+    );
+    console.log(
+      'SumFormatValueConverter getCurrency currency:',
+      this.currency
     );
     console.log('CurrencyService:', this.currencyService);
   }
@@ -27,7 +32,8 @@ export class SumFormatValueConverter {
     }
 
     const currency = this._extractCurrency(formattedValue.currency);
-    return `${this._formatOutput(formattedValue.amount, currency)} (${this._formatOutput(formattedValue.amount, 'BGN')})`;
+    const secondaryCurrencyConverted = (formattedValue.amount / 1.95583).toFixed(2);
+    return `${this._formatOutput(formattedValue.amount, currency)} (${this._formatOutput(secondaryCurrencyConverted, this.currency)})`;
   }
 
   _normalizeValue(value) {

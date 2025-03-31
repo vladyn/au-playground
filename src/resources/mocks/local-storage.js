@@ -1,5 +1,12 @@
-// mock local Storage
-
+/**
+ *  Usage example
+ *  const localStorageMock = new LocalStorage();
+ *  localStorageMock.setItem('key', 'value');
+ *  console.log(localStorageMock.getItem('key')); // Output: 'value'
+ *   localStorageMock.removeItem('key');
+ *   console.log(localStorageMock.getItem('key')); // Output: null
+ *   localStorageMock.clear();
+ * */
 export class LocalStorage {
   constructor() {
     this.storage = {};
@@ -21,13 +28,3 @@ export class LocalStorage {
     this.storage = {};
   }
 }
-
-/**
- *  Usage example
- *  const localStorageMock = new LocalStorage();
- *  localStorageMock.setItem('key', 'value');
- *  console.log(localStorageMock.getItem('key')); // Output: 'value'
- *   localStorageMock.removeItem('key');
- *   console.log(localStorageMock.getItem('key')); // Output: null
- *   localStorageMock.clear();
- * */

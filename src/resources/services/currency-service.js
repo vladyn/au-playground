@@ -5,11 +5,14 @@ import { LocalStorage } from '../mocks/local-storage';
 export class CurrencyService {
   constructor(storage) {
     this.defaultCurrency = 'EUR';
+    this.primaryCurrency = this.defaultCurrency;
+    this.secondaryCurrency = 'BGN';
     this.storage = storage;
+    console.log(this.storage);
     this.storageKey = 'currency';
-    this.storage.setItem(this.storageKey, this.defaultCurrency);
-    console.log('CurrencyService initialized with default currency:', this.defaultCurrency);
-    console.log('Storage:', this.storage);
+    this.defaultStorageKey = 'defaultCurrency';
+    this.storage.setItem(this.storageKey, this.secondaryCurrency);
+    this.storage.setItem(this.defaultStorageKey, this.defaultCurrency);
   }
 
   getDefaultCurrency() {
