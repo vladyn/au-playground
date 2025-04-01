@@ -4,19 +4,10 @@ import { CurrencyService } from '../services/currency-service';
 
 @inject(CurrencyService)
 export class SumFormatValueConverter {
-  constructor(currencyService) {
+  constructor(currencyService = new CurrencyService()) {
     this.currencyService = currencyService;
-    this.defaultCurrency = this.currencyService.getDefaultCurrency();
-    this.currency = this.currencyService.getCurrency();
-    console.log(
-      'SumFormatValueConverter initialized with default currency:',
-      this.defaultCurrency
-    );
-    console.log(
-      'SumFormatValueConverter getCurrency currency:',
-      this.currency
-    );
-    console.log('CurrencyService:', this.currencyService);
+    this.defaultCurrency = this.currencyService.getDefaultCurrency(); // EUR
+    this.currency = this.currencyService.getCurrency(); // BNG
   }
 
   toView(value) {
@@ -30,17 +21,17 @@ export class SumFormatValueConverter {
     if (!formattedValue.currency) {
       return '';
     }
-
-    const currency = this._extractCurrency(formattedValue.currency);
-    const secondaryCurrencyConverted = (formattedValue.amount / 1.95583).toFixed(2);
-    return `${this._formatOutput(formattedValue.amount, currency)} (${this._formatOutput(secondaryCurrencyConverted, this.currency)})`;
+    
+    const currencyConverted = (formattedValue.amount / 1.95583).toFixed(2);
+    return `${this._formatOutput(currencyConverted, this.defaultCurrency)} (${this._formatOutput(formattedValue.amount, this.currency)})`;
   }
 
   _normalizeValue(value) {
     if (typeof value === 'number' || Number.isFinite(value)) {
       return { amount: value, currency: this.defaultCurrency };
     }
-    return value;
+
+    return { amount: value?.amount, currency: this.defaultCurrency };
   }
 
   _isValidFormattedValue(formattedValue) {
@@ -61,11 +52,6 @@ export class SumFormatValueConverter {
     } else {
       formattedValue.amount = Number.parseInt(formattedValue.amount);
     }
-  }
-
-  _extractCurrency(currency) {
-    const index = currency.indexOf(':');
-    return index !== -1 ? currency.substring(index + 2) : currency;
   }
 
   _formatOutput(amount, currency) {

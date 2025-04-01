@@ -1,14 +1,9 @@
-import { inject } from 'aurelia-framework';
-import { LocalStorage } from '../mocks/local-storage';
-
-@inject(LocalStorage)
 export class CurrencyService {
-  constructor(storage) {
+  constructor() {
     this.defaultCurrency = 'EUR';
     this.primaryCurrency = this.defaultCurrency;
     this.secondaryCurrency = 'BGN';
-    this.storage = storage;
-    console.log(this.storage);
+    this.storage = localStorage;
     this.storageKey = 'currency';
     this.defaultStorageKey = 'defaultCurrency';
     this.storage.setItem(this.storageKey, this.secondaryCurrency);
@@ -16,7 +11,7 @@ export class CurrencyService {
   }
 
   getDefaultCurrency() {
-    return this.defaultCurrency;
+    return this.storage.getItem(this.defaultStorageKey);
   }
 
   getCurrency() {
