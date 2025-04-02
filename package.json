@@ -48,7 +48,9 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",
     "jest-cli": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "jest-transform-stub": "^2.0.0",
+    "jsdom": "^26.0.0",
     "json-loader": "^0.5.7",
     "mini-css-extract-plugin": "^2.7.6",
     "minimatch": "^5.1.2",
@@ -80,45 +82,5 @@
     "glob-stream": "^7.0.0",
     "glob-parent": "^6.0.0",
     "micromatch": "^4.0.0"
-  },
-  "jest": {
-    "testMatch": [
-      "<rootDir>/test/**/*.spec.js"
-    ],
-    "moduleNameMapper": {
-      "^aurelia-binding$": "<rootDir>/node_modules/aurelia-binding",
-      "\\.(css|less)$": "identity-obj-proxy"
-    },
-    "modulePaths": [
-      "<rootDir>/src",
-      "<rootDir>/node_modules"
-    ],
-    "moduleFileExtensions": [
-      "js",
-      "json"
-    ],
-    "transform": {
-      "^.+\\.(css|less|sass|scss|styl|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "jest-transform-stub",
-      "^.+\\.js$": "babel-jest",
-      "^.+\\.jade$": "jest-transform-pug"
-    },
-    "setupFiles": [
-      "<rootDir>/test/jest-pretest.js"
-    ],
-    "testEnvironment": "node",
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "src/**/*.js",
-      "!**/*.spec.js",
-      "!**/node_modules/**",
-      "!**/test/**"
-    ],
-    "coverageDirectory": "<rootDir>/test/coverage-jest",
-    "coverageReporters": [
-      "json",
-      "lcov",
-      "text",
-      "html"
-    ]
   }
 }

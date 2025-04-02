@@ -1,5 +1,5 @@
 import {bootstrap} from 'aurelia-bootstrapper';
-import {StageComponent} from 'aurelia-testing';
+import {StageComponent, ComponentTester} from 'aurelia-testing';
 import {PLATFORM} from 'aurelia-pal';
 
 describe('Stage App Component', () => {
@@ -22,6 +22,4 @@ describe('Stage App Component', () => {
       done();
     });
   });
-
-  afterEach(() => component.dispose());
 });
