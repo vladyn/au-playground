@@ -50,9 +50,7 @@ export class App {
   }
 
   bind(bindingContext, parentContext) {
-    console.log(bindingContext, parentContext);
     this.nullAble = new SumFormatValueConverter().toView(this.currencyPayload);
-    console.log(this.nullAble);
   }
 
   toggleMenu() {

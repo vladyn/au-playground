@@ -10,7 +10,7 @@ export class SumFormatValueConverter {
     this.currency = this.currencyService.getCurrency(); // BNG
   }
 
-  toView(value) {
+  toView(value, ...args) {
     const formattedValue = this._normalizeValue(value);
     if (!this._isValidFormattedValue(formattedValue)) {
       return;
@@ -23,7 +23,18 @@ export class SumFormatValueConverter {
     }
     
     const currencyConverted = (formattedValue.amount / 1.95583).toFixed(2);
-    return `${this._formatOutput(currencyConverted, this.defaultCurrency)} (${this._formatOutput(formattedValue.amount, this.currency)})`;
+    if (args.includes('primaryCurrency')) {
+      return `${this._formatOutput(currencyConverted, this.defaultCurrency)}`;
+    }
+
+    switch (true) {
+      case args.includes('primaryCurrency'):
+        return `${this._formatOutput(currencyConverted, this.defaultCurrency)}`;
+      case args.includes('secondaryCurrency'):
+        return `(${this._formatOutput(formattedValue.amount, this.currency)})`;
+      default:
+        return `${this._formatOutput(currencyConverted, this.defaultCurrency)} (${this._formatOutput(formattedValue.amount, this.currency)})`;
+    }
   }
 
   _normalizeValue(value) {

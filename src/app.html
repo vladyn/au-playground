@@ -5,8 +5,10 @@
   <my-profile name="Jane"></my-profile>
 
   <input type="text" value.bind="amount | sumFormat">
-  <input type="text" value.bind="currencyPayload | sumFormat">
+  <input type="text" value.bind="currencyPayload | sumFormat:'primaryCurrency'">
   <input type="text" value.bind="nullAble">
+  <p>${currencyPayload | sumFormat:'primaryCurrency'}</p>
+  <p>${currencyPayload | sumFormat:'secondaryCurrency'}</p>
 
   <account-details message="Blias!"></account-details>
   <button click.trigger="openMenuClick()" disabled.bind="isMenuVisible">Enable the context menu</button>
