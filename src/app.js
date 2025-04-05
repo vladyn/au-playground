@@ -1,6 +1,7 @@
 import { inject } from 'aurelia-framework';
 import { MenuRenderer } from './resources/rederers/menu-renderer';
 import { MenuService } from "./resources/services/menu-service";
+import { SumFormatValueConverter } from './resources/value-converters/sum-format-value-converter';
 
 @inject(MenuRenderer, MenuService)
 export class App {
@@ -9,6 +10,12 @@ export class App {
   isMenuVisible = true;
   currency = 'BGN';
   amount = 123456.789;
+  currencyPayload = {
+    amount: 123123123,
+    currency: 'EUR',
+    currencyId: 'GUID'
+  }
+  nullAble = 12312;
 
   constructor(contextMenuRenderer, menuService) {
     this.contextMenuRenderer = contextMenuRenderer;
@@ -16,6 +23,7 @@ export class App {
   }
 
   attached() {
+    this.nullAble = new SumFormatValueConverter().toView(this.currencyPayload);
     this.viewModel = {
       message: 'hello world',
       visible: true,
@@ -39,6 +47,10 @@ export class App {
       ],
     };
     this.menuService.renderMenu(this.viewModel);
+  }
+
+  bind(bindingContext, parentContext) {
+    this.nullAble = new SumFormatValueConverter().toView(this.currencyPayload);
   }
 
   toggleMenu() {

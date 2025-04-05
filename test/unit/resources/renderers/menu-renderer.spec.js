@@ -24,6 +24,4 @@ describe('MenuRenderer', () => {
     renderer.render(viewModel);
     expect(compileSpy).toHaveBeenCalled();
   });
-
-  // afterEach(() => renderer.dispose());
 });

@@ -4,17 +4,13 @@ import { CurrencyService } from '../services/currency-service';
 
 @inject(CurrencyService)
 export class SumFormatValueConverter {
-  constructor(currencyService) {
+  constructor(currencyService = new CurrencyService()) {
     this.currencyService = currencyService;
-    this.defaultCurrency = this.currencyService.getDefaultCurrency();
-    console.log(
-      'SumFormatValueConverter initialized with default currency:',
-      this.defaultCurrency
-    );
-    console.log('CurrencyService:', this.currencyService);
+    this.defaultCurrency = this.currencyService.getDefaultCurrency(); // EUR
+    this.currency = this.currencyService.getCurrency(); // BNG
   }
 
-  toView(value) {
+  toView(value, ...args) {
     const formattedValue = this._normalizeValue(value);
     if (!this._isValidFormattedValue(formattedValue)) {
       return;
@@ -25,16 +21,28 @@ export class SumFormatValueConverter {
     if (!formattedValue.currency) {
       return '';
     }
+    
+    const currencyConverted = (formattedValue.amount / 1.95583).toFixed(2);
+    if (args.includes('primaryCurrency')) {
+      return `${this._formatOutput(currencyConverted, this.defaultCurrency)}`;
+    }
 
-    const currency = this._extractCurrency(formattedValue.currency);
-    return this._formatOutput(formattedValue.amount, currency);
+    switch (true) {
+      case args.includes('primaryCurrency'):
+        return `${this._formatOutput(currencyConverted, this.defaultCurrency)}`;
+      case args.includes('secondaryCurrency'):
+        return `(${this._formatOutput(formattedValue.amount, this.currency)})`;
+      default:
+        return `${this._formatOutput(currencyConverted, this.defaultCurrency)} (${this._formatOutput(formattedValue.amount, this.currency)})`;
+    }
   }
 
   _normalizeValue(value) {
     if (typeof value === 'number' || Number.isFinite(value)) {
       return { amount: value, currency: this.defaultCurrency };
     }
-    return value;
+
+    return { amount: value?.amount, currency: this.defaultCurrency };
   }
 
   _isValidFormattedValue(formattedValue) {
@@ -55,11 +63,6 @@ export class SumFormatValueConverter {
     } else {
       formattedValue.amount = Number.parseInt(formattedValue.amount);
     }
-  }
-
-  _extractCurrency(currency) {
-    const index = currency.indexOf(':');
-    return index !== -1 ? currency.substring(index + 2) : currency;
   }
 
   _formatOutput(amount, currency) {

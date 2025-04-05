@@ -23,6 +23,7 @@ export class MenuRenderer {
     const view = viewFactory.create(this.container);
     const anchorIsContainer = true;
     this.viewSlot = new ViewSlot(document.body, anchorIsContainer);
+    console.log(this.viewSlot);
     this.viewSlot.add(view);
     this.viewSlot.attached();
     this.viewSlot.bind(viewModel, createOverrideContext(viewModel));

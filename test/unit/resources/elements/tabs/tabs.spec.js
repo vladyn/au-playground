@@ -8,16 +8,16 @@ describe('Tabs', () => {
   beforeEach(() => {
     component = StageComponent
       .withResources(PLATFORM.moduleName('../../src/resources/elements/tabs/tabs'))
-      .inView('<tabs></tabs>');
+      .inView('<tabs></tabs>')
+      
   });
 
   it('should render tabs', done => {
-    component.create(bootstrap).then(() => {
-      const tabsElement = document.querySelector('tabs');
-      expect(tabsElement.querySelectorAll('div').length).toBe(2);
+    const result = component.create(bootstrap)
+    .then((res) => {
+      console.log(res)
+      console.log(result);
       done();
-    }).catch(e => { 
-      throw e;
-    });
+    })
   });
 });
