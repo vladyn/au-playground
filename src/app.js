@@ -23,7 +23,6 @@ export class App {
   }
 
   attached() {
-    this.nullAble = new SumFormatValueConverter().toView(this.currencyPayload);
     this.viewModel = {
       message: 'hello world',
       visible: true,
@@ -50,7 +49,7 @@ export class App {
   }
 
   bind(bindingContext, parentContext) {
-    this.nullAble = new SumFormatValueConverter().toView(this.currencyPayload);
+    this.nullAble = new SumFormatValueConverter().toView('123');
   }
 
   toggleMenu() {

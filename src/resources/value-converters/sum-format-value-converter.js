@@ -23,9 +23,6 @@ export class SumFormatValueConverter {
     }
     
     const currencyConverted = (formattedValue.amount / 1.95583).toFixed(2);
-    if (args.includes('primaryCurrency')) {
-      return `${this._formatOutput(currencyConverted, this.defaultCurrency)}`;
-    }
 
     switch (true) {
       case args.includes('primaryCurrency'):
@@ -38,11 +35,15 @@ export class SumFormatValueConverter {
   }
 
   _normalizeValue(value) {
-    if (typeof value === 'number' || Number.isFinite(value)) {
-      return { amount: value, currency: this.defaultCurrency };
+    switch (true) {
+      case typeof value === 'number':
+      case Number.isFinite(value):
+        return { amount: value, currency: this.defaultCurrency };
+      case typeof value === 'string' && Number.isFinite(Number(value)):
+        return { amount: Number(value), currency: this.defaultCurrency };
+      default:
+        return { amount: value?.amount, currency: this.defaultCurrency };
     }
-
-    return { amount: value?.amount, currency: this.defaultCurrency };
   }
 
   _isValidFormattedValue(formattedValue) {
