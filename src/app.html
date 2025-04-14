@@ -9,6 +9,7 @@
   <input type="text" value.bind="nullAble">
   <p>${currencyPayload | sumFormat:'primaryCurrency'}</p>
   <p>${currencyPayload | sumFormat:'secondaryCurrency'}</p>
+  <p>${currencyPayload | sumFormat}</p>
 
   <account-details message="Blias!"></account-details>
   <button click.trigger="openMenuClick()" disabled.bind="isMenuVisible">Enable the context menu</button>

@@ -11,11 +11,12 @@ export class App {
   currency = 'BGN';
   amount = 123456.789;
   currencyPayload = {
-    amount: 123123123,
+    amount: 123123,
+    amountSecondary: 123213212,
     currency: 'EUR',
     currencyId: 'GUID'
   }
-  nullAble = 12312;
+  nullAble = null;
 
   constructor(contextMenuRenderer, menuService) {
     this.contextMenuRenderer = contextMenuRenderer;
