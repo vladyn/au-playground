@@ -11,11 +11,12 @@ export class App {
   currency = 'BGN';
   amount = 123456.789;
   currencyPayload = {
-    amount: 123123123,
+    amount: 123123,
+    amountSecondary: 123213212,
     currency: 'EUR',
     currencyId: 'GUID'
   }
-  nullAble = 12312;
+  nullAble = null;
 
   constructor(contextMenuRenderer, menuService) {
     this.contextMenuRenderer = contextMenuRenderer;
@@ -23,7 +24,6 @@ export class App {
   }
 
   attached() {
-    this.nullAble = new SumFormatValueConverter().toView(this.currencyPayload);
     this.viewModel = {
       message: 'hello world',
       visible: true,
@@ -50,7 +50,7 @@ export class App {
   }
 
   bind(bindingContext, parentContext) {
-    this.nullAble = new SumFormatValueConverter().toView(this.currencyPayload);
+    this.nullAble = new SumFormatValueConverter().toView('123');
   }
 
   toggleMenu() {
