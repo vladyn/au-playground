@@ -10,7 +10,7 @@
   <p>${currencyPayload | sumFormat:'primaryCurrency'}</p>
   <p>${currencyPayload | sumFormat:'secondaryCurrency'}</p>
 
-  <account-details message="Blias!"></account-details>
+  <account-details message="Blias!" first-name.bind="sadfasd"></account-details>
   <button click.trigger="openMenuClick()" disabled.bind="isMenuVisible">Enable the context menu</button>
   <button click.trigger="closeMenuClick()" disabled.bind="!isMenuVisible">Disable the context menu</button>
 
@@ -33,6 +33,22 @@
           <li>Breaking Bad</li>
         </ul>
       </tab>
-      <tab header="Recently Added"> Nothing to see here. </tab>
+      <tab header="Recently Added"> 
+        <p>Nothing to see here.</p> 
+        <select class="custom-select">
+          <option>
+            <span>HTML</span>
+          </option>
+          <option>
+            <span>CSS</span>
+          </option>
+          <option>
+            <span>JavaScript</span>
+          </option>
+          <option>
+            <span>WASM</span>
+          </option>
+        </select>
+      </tab>
     </tabs>
 </template>

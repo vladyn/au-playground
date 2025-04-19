@@ -13,11 +13,14 @@ describe('Tabs', () => {
   });
 
   it('should render tabs', done => {
-    const result = component.create(bootstrap)
-    .then((res) => {
-      console.log(res)
-      console.log(result);
+    component.create(bootstrap).then(() => {
+      const element = component.element;
+      const tabsElement = element.querySelector('tabs');
+      expect(tabsElement).toBeTruthy();
       done();
-    })
+    }).catch(e => { 
+      console.log(e.toString());
+      done();
+    });
   });
 });

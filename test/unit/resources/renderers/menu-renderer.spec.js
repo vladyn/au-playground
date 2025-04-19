@@ -1,12 +1,8 @@
-import {StageComponent, ComponentTester, CompileSpy, ViewSpy} from 'aurelia-testing';
 import { MenuRenderer} from "../../../../src/resources/rederers/menu-renderer";
-import {bootstrap} from 'aurelia-bootstrapper';
-import {PLATFORM} from 'aurelia-pal';
 
 describe('MenuRenderer', () => {
   let renderer;
   let compileSpy;
-  let viewSpy;
 
   beforeEach(() => {
     // mock using jest
@@ -19,9 +15,9 @@ describe('MenuRenderer', () => {
   it('should render a menu', () => {
     const viewModel = {
       message: 'hello world',
-      visible: false
+      visible: true
     };
     renderer.render(viewModel);
-    expect(compileSpy).toHaveBeenCalled();
+    expect(compileSpy.compile).toHaveBeenCalled();
   });
 });

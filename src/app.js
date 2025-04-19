@@ -49,7 +49,7 @@ export class App {
     this.menuService.renderMenu(this.viewModel);
   }
 
-  bind(bindingContext, parentContext) {
+  bind() {
     this.nullAble = new SumFormatValueConverter().toView(this.currencyPayload);
   }
 

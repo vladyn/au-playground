@@ -3,7 +3,7 @@ import { inject, customElement, bindable, processContent } from 'aurelia-framewo
   const contentTemplate = document.createElement("template");
   contentTemplate.setAttribute("replace-part", "content");
   const content = document.createElement("div");
-  content.innerHTML = `<h1>\${message}</h1>`;
+  content.innerHTML = '<h1>${message}</h1>';
   contentTemplate.content.appendChild(content);
   node.append(contentTemplate);
   return true;
