@@ -25,6 +25,6 @@ export class CurrencyService {
     if (!appData) {
       return -1; // Fallback to a temporary: EUR (BGN)
     }
-    return appData[this.currencyConfig] ?? -1; // Fallback to a temporary: EUR (BGN)
+    return appData[this.currencyConfig];
   }
 }
