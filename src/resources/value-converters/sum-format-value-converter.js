@@ -22,6 +22,7 @@ export class SumFormatValueConverter {
     const primaryCurrency = this._formatAmount(formattedValue, 'amount');
     const secondaryCurrency = this._formatAmount(formattedValue, 'amountSecondary');
 
+    // If there is no arguments, then force push the array with arguments depending on the currencyMode setting
     if(!args.length) {
       switch (this.config) {
         case -1:
