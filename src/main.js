@@ -8,7 +8,7 @@ export function configure(aurelia) {
     .standardConfiguration()
     .feature(PLATFORM.moduleName('resources/index'))
     .plugin(PLATFORM.moduleName('aurelia-i18n'), (instance) => {
-      let aliases = ['t', 'i18n'];
+      const aliases = ['t', 'i18n'];
       // add aliases for 't' attribute
       TCustomAttribute.configureAliases(aliases);
 
