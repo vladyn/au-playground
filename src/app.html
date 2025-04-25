@@ -4,12 +4,18 @@
   <my-profile first-name="Jane" last-name="Smith"></my-profile>
   <my-profile name="Jane"></my-profile>
 
-  <input type="text" value.bind="amount | sumFormat">
-  <input type="text" value.bind="currencyPayload | sumFormat:'primaryCurrency'">
-  <input type="text" value.bind="nullAble">
+  <label for="input1">Sum Format</label>
+  <input type="text" id="input1" value.bind="amount | sumFormat">
+
+  <label for="input2">Sum Format:'primaryCurrency'</label>
+  <input type="text" id="input2" value.bind="currencyPayload | sumFormat:'primaryCurrency'">
+
+  <label for="input3">new SumFormatValueConverter().toView('123')</label>
+  <input type="text" id="input3" value.bind="nullAble">
   <p>${currencyPayload | sumFormat:'primaryCurrency'}</p>
   <p>${currencyPayload | sumFormat:'secondaryCurrency'}</p>
   <p>${currencyPayload | sumFormat}</p>
+  <p>${currencyPayload | sumFormat:'twoCurrencies'}</p>
 
   <account-details message="Blias!"></account-details>
   <button click.trigger="openMenuClick()" disabled.bind="isMenuVisible">Enable the context menu</button>
