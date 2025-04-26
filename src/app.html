@@ -9,9 +9,13 @@
 
   <label for="input2">Sum Format:'primaryCurrency'</label>
   <input type="text" id="input2" value.bind="currencyPayload | sumFormat:'primaryCurrency'">
-
+  <hr>
   <label for="input3">new SumFormatValueConverter().toView('123')</label>
   <input type="text" id="input3" value.bind="nullAble">
+  <hr>
+  <label for="input4">Sum Format:'primaryCurrency'</label>
+  <input type="text" id="input4" value.bind="currencyPayload | sumFormat:'twoCurrencies'">
+
   <p>${currencyPayload | sumFormat:'primaryCurrency'}</p>
   <p>${currencyPayload | sumFormat:'secondaryCurrency'}</p>
   <p>${currencyPayload | sumFormat}</p>

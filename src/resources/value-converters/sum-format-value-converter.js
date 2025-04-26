@@ -27,8 +27,10 @@ export class SumFormatValueConverter {
         args.push('secondaryCurrency');
         break;
       case 1:
-      case 2:
         args.push('primaryCurrency');
+        break;
+      case 2:
+        args.push('primaryCurrencySpecial');
         break;
       default:
         args.length = 0;
@@ -36,9 +38,10 @@ export class SumFormatValueConverter {
     }
 
     switch (true) {
-      case args.includes('primaryCurrency') && args.includes('twoCurrencies'):
+      case args.includes('primaryCurrencySpecial') && args.includes('twoCurrencies'):
         return `${this._formatOutput(primaryCurrency, this.defaultCurrency)} (${this._formatOutput(secondaryCurrency, this.currency)})`;
       case args.includes('primaryCurrency'):
+      case args.includes('primaryCurrencySpecial'):
         return `${this._formatOutput(primaryCurrency, this.defaultCurrency)}`;
       case args.includes('secondaryCurrency'):
         return `${this._formatOutput(secondaryCurrency, this.currency)}`;
