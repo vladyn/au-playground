@@ -11,7 +11,9 @@ describe('MenuRenderer', () => {
   beforeEach(() => {
     // mock using jest
     compileSpy = jest.fn();
-    compileSpy.compile = jest.fn(() => ({create: jest.fn()}));
+    viewSpy = jest.fn();
+    compileSpy.compile = jest.fn(() => ({create: viewSpy}));
+    // compileSpy.compile = jest.fn(() => ({create: jest.fn()}));
     const container = document.createElement('div');
     compileSpy.compile();
     renderer = new MenuRenderer(compileSpy, container);
