@@ -58,8 +58,33 @@ describe('SumFormatValueConverter', () => {
       const resultRemoveSpaces = result.replace(/\s/g, '');
       expect(resultRemoveSpaces).toEqual('1234567,89€(987654,32лв.)');  
     });
-  }
-  );
+  });
+
+  describe('Currency config is 1', () => {
+    const currencyServiceMock = {
+      getDefaultCurrency: jest.fn(() => 'EUR'),
+      getCurrency: jest.fn(() => 'BGN'),
+      getConfig: jest.fn(() => 1),
+    };
+  
+    beforeEach(() => {
+      converter = new SumFormatValueConverter();
+      // Removed unnecessary assignment to currencyService
+      converter.currencyService = currencyServiceMock;
+    });
+  
+    it('should format a number to a string with thousands separator and primary currency', () => {
+      const result = converter.toView(1234567.89);
+      const resultRemoveSpaces = result.replace(/\s/g, '');
+      expect(resultRemoveSpaces).toEqual('1234567,89€');
+    });
+  
+    it('should format a number with secondary currency', () => {
+      const result = converter.toView({ amount: 1234567.89, amountSecondary: 987654.32 });
+      const resultRemoveSpaces = result.replace(/\s/g, '');
+      expect(resultRemoveSpaces).toEqual('1234567,89€');  
+    });
+  });
 
   it('should return undefined for null or undefined values', () => {
     expect(converter.toView(null)).toBeUndefined();

@@ -1,5 +1,5 @@
 import {bootstrap} from 'aurelia-bootstrapper';
-import {StageComponent, ComponentTester} from 'aurelia-testing';
+import {StageComponent} from 'aurelia-testing';
 import {PLATFORM} from 'aurelia-pal';
 
 describe('Stage App Component', () => {
