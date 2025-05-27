@@ -1,8 +1,4 @@
-import {StageComponent, ComponentTester, CompileSpy, ViewSpy} from 'aurelia-testing';
-import { MenuRenderer} from "../../../../src/resources/rederers/menu-renderer";
-import {bootstrap} from 'aurelia-bootstrapper';
-import {PLATFORM} from 'aurelia-pal';
-
+import { MenuRenderer } from "../../../../src/resources/rederers/menu-renderer";
 describe('MenuRenderer', () => {
   let renderer;
   let compileSpy;
@@ -11,7 +7,9 @@ describe('MenuRenderer', () => {
   beforeEach(() => {
     // mock using jest
     compileSpy = jest.fn();
-    compileSpy.compile = jest.fn(() => ({create: jest.fn()}));
+    viewSpy = jest.fn();
+    compileSpy.compile = jest.fn(() => ({create: viewSpy}));
+    // compileSpy.compile = jest.fn(() => ({create: jest.fn()}));
     const container = document.createElement('div');
     compileSpy.compile();
     renderer = new MenuRenderer(compileSpy, container);

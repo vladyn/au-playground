@@ -11,5 +11,13 @@ describe('Currency Service', () => {
   it('creates a store', () => {
     const result = service.getDefaultCurrency();
     expect(result).toEqual('EUR');
-  })
+  });
+  it('creates a store', () => {
+    const result = service.getCurrency();
+    expect(result).toEqual('BGN');
+  });
+  it('creates a store', () => {
+    const result = service.getConfig();
+    expect(result).toEqual(-1);
+  });
 });
