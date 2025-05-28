@@ -16,15 +16,11 @@ export class CurrencyService {
   }
 
   getCurrency() {
-    return this.secondaryCurrency;
+    return this.secondaryCurrency
   }
 
   getConfig() {
     const appData = JSON.parse(this.storage.getItem('appData'));
-
-    if (!appData) {
-      return -1; // Fallback to a temporary: EUR (BGN)
-    }
-    return appData[this.currencyConfig];
+    return appData[this.currencyConfig] ?? -1; // Fallback to a temporary: EUR (BGN)
   }
 }
