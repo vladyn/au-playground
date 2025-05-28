@@ -1,6 +1,8 @@
 import { thousandsSeparator } from '../utils/thousands-separator';
 import { inject } from 'aurelia-framework';
 import { CurrencyService } from '../services/currency-service';
+import { currencyModes } from '../enums/currency-modes';
+import { systemAreaNamespaces } from '../enums/system-area-namespaces';
 
 @inject(CurrencyService)
 export class SumFormatValueConverter {
@@ -13,6 +15,7 @@ export class SumFormatValueConverter {
     this.defaultCurrency = this.currencyService.getDefaultCurrency(); // EUR
     this.currency = this.currencyService.getCurrency(); // BNG
     this.config = Number(this.currencyService.getConfig()); // 0 EUR (BGN), 1 - EUR, -1 - BGN
+    const { euro, lv, euroLv, euroSpecialFields } = currencyModes;
 
     const formattedValue = this._normalizeValue(value);
     if (!this._isValidFormattedValue(formattedValue)) {
@@ -22,43 +25,59 @@ export class SumFormatValueConverter {
     const primaryCurrency = this._formatAmount(formattedValue, 'amount');
     const secondaryCurrency = this._formatAmount(formattedValue, 'amountSecondary');
 
-    switch (this.config) {
-      case -1:
-        args.push('secondaryCurrency');
-        break;
-      case 1:
-        args.push('primaryCurrency');
-        break;
-      case 2:
-        args.push('primaryCurrencySpecial');
-        break;
-      default:
-        args.length = 0;
-        break;
+    if(!args.length) {
+      switch (this.config) {
+        case lv:
+          args.push('secondaryCurrency');
+          break;
+        case euro:
+          args.push('primaryCurrency');
+          break;
+        default:
+          args.length = 0;
+          break;
+      }
     }
 
     switch (true) {
-      case args.includes('primaryCurrencySpecial') && args.includes('twoCurrencies'):
+      // the special fields exception
+      case args.includes('twoCurrencies') && this.config === euroSpecialFields:
         return `${this._formatOutput(primaryCurrency, this.defaultCurrency)} (${this._formatOutput(secondaryCurrency, this.currency)})`;
+      // Enforce Special currencies to have only EUR. All others are EUR.
       case args.includes('primaryCurrency'):
-      case args.includes('primaryCurrencySpecial'):
+      case args.includes('twoCurrencies') && this.config === euro:
+      case !args.length && this.config === euroSpecialFields:
         return `${this._formatOutput(primaryCurrency, this.defaultCurrency)}`;
+      // When currency moe is BGN - special fields are BGN. All others are BGN by specification.
       case args.includes('secondaryCurrency'):
+      case args.includes('twoCurrencies') && this.config === lv:
         return `${this._formatOutput(secondaryCurrency, this.currency)}`;
+      // All other - this is when the currency mode is 0. Displaying two currencies.
       default:
         return `${this._formatOutput(primaryCurrency, this.defaultCurrency)} (${this._formatOutput(secondaryCurrency, this.currency)})`;
     }
   }
 
   _normalizeValue(value) {
+    const amountSecondary = value?.amountSecondary ?? 0;
+    const currency = this.defaultCurrency;
+
     switch (true) {
       case typeof value === 'number':
       case Number.isFinite(value):
-        return { amount: value, currency: this.defaultCurrency, amountSecondary: value?.amountSecondary ?? value };
+        console.trace(value, 'is not a valid value');
+        const callStack = new Error().stack?.split("@webpack-internal:///");
+        const componentReference = callStack.filter(namespace => {
+          return systemAreaNamespaces.some(name => namespace.startsWith(name) && namespace);
+        });
+
+        console.log(componentReference);
+
+        return { amount: value, currency, amountSecondary };
       case typeof value === 'string' && Number.isFinite(Number(value)):
-        return { amount: Number(value), currency: this.defaultCurrency, amountSecondary: value?.amountSecondary ?? value };
+        return { amount: Number(value), currency, amountSecondary };
       default:
-        return { amount: value?.amount, currency: this.defaultCurrency, amountSecondary: value.amountSecondary };
+        return { amount: value?.amount, currency, amountSecondary };
     }
   }
 
