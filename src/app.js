@@ -2,8 +2,10 @@ import { inject } from 'aurelia-framework';
 import { MenuRenderer } from './resources/rederers/menu-renderer';
 import { MenuService } from "./resources/services/menu-service";
 import { SumFormatValueConverter } from './resources/value-converters/sum-format-value-converter';
+import { Logger } from './resources/services/logger';
+import idObj from 'identity-obj-proxy';
 
-@inject(MenuRenderer, MenuService)
+@inject(MenuRenderer, MenuService, Logger)
 export class App {
   message = 'Hello World!';
   viewModel = {};
@@ -18,9 +20,10 @@ export class App {
   }
   nullAble = null;
 
-  constructor(contextMenuRenderer, menuService) {
+  constructor(contextMenuRenderer, menuService, logger) {
     this.contextMenuRenderer = contextMenuRenderer;
     this.menuService = menuService;
+    this.logger = logger
   }
 
   attached() {
@@ -65,5 +68,17 @@ export class App {
   openMenuClick() {
     this.menuService.controller.openMenu(this.viewModel);
     this.toggleMenu();
+  }
+
+  logMeIfYouCan() {
+    this.logger.info({
+      title: 'Blias!!!',
+      message: 'Alabalala',
+      timeout: '66600000',
+      closeHtml: '<button type="button" class="toast-close-button" id="currency-error" aria-label="Close">×</button>'
+    });
+    // this.logger.warn('This is a warning message');
+    // this.logger.error('This is an error message');
+    // this.logger.success('This is a success message');
   }
 }
