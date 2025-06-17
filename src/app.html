@@ -1,8 +1,14 @@
 <template>
+  <require from="app.css"></require>
   <h1>${message}</h1>
   <div as-element="my-profile" first-name="John" last-name="Doe"></div>
   <my-profile first-name="Jane" last-name="Smith"></my-profile>
   <my-profile name="Jane"></my-profile>
+
+  <section>
+    <h2>Logging</h2>
+    <button click.trigger="logMeIfYouCan()">Log Messages</button>
+  </section>
 
   <label for="input1">Sum Format</label>
   <input type="text" id="input1" value.bind="amount | sumFormat">
