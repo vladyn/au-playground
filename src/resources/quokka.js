@@ -8,3 +8,34 @@ const output = result.match(/(https?:\/\/[^/]+).*?(?=auth_token)/)[0];
 output;
 
 result.includes('auth_token') ? output : result2;
+
+function* generator() {
+  console.log('ready...');
+  while (true) {
+    const msg = yield;
+    if (msg === 'booYAA') {
+      return msg;
+    }
+    yield msg;
+    console.log(msg);
+  }
+}
+
+const robot = generator(123);
+robot.next();
+robot.next('asdf');
+robot.next();
+robot.next(123);
+robot.next();
+robot.next('booYAA');
+
+function* some() {
+  while(true) {
+    const msg = yield;
+    yield* msg;
+  }
+}
+
+const res1 = some();
+const res2 = res1.next('asfd');
+res1.next('a');

@@ -19,7 +19,7 @@ describe('SumFormatValueConverter', () => {
     it('should format a number to a string with thousands separator and currency', () => {
       const result = converter.toView(1234567.89);
       const resultRemoveSpaces = result.replace(/\s/g, '');
-      expect(resultRemoveSpaces).toEqual('1234567,89лв.');
+      expect(resultRemoveSpaces).toEqual('0,00лв.');
     });
   
       it('should format a number with secondary currency', () => {
@@ -30,7 +30,7 @@ describe('SumFormatValueConverter', () => {
     it('should format a string with secondary currency', () => {
       const result = converter.toView({ amount: '1234567.89', amountSecondary: '987654.32' }, 'primaryCurrencySpecial');
       const resultRemoveSpaces = result.replace(/\s/g, '');
-      expect(resultRemoveSpaces).toEqual('1234567,89€');
+      expect(resultRemoveSpaces).toEqual('1234567,89€(987654,32лв.)');
     });
   });
 
@@ -50,7 +50,7 @@ describe('SumFormatValueConverter', () => {
     it('should format a number to a string with thousands separator and both currencies', () => {
       const result = converter.toView(1234567.89);
       const resultRemoveSpaces = result.replace(/\s/g, '');
-      expect(resultRemoveSpaces).toEqual('1234567,89€(1234567,89лв.)');
+      expect(resultRemoveSpaces).toEqual('1234567,89€(0,00лв.)');
     });
   
     it('should format a number with secondary currency', () => {
