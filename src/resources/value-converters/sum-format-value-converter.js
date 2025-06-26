@@ -65,7 +65,6 @@ export class SumFormatValueConverter {
     switch (true) {
       case typeof value === 'number':
       case Number.isFinite(value):
-        console.trace(value, 'is not a valid value');
         const callStack = new Error().stack?.split("@webpack-internal:///");
         const componentReference = callStack.filter(namespace => {
           return systemAreaNamespaces.some(name => namespace.startsWith(name) && namespace);

@@ -85,5 +85,48 @@
     "glob-stream": "^7.0.0",
     "glob-parent": "^6.0.0",
     "micromatch": "^4.0.0"
+  },
+  
+    "testMatch": [
+      "<rootDir>/src/**/*.spec.js",
+      "<rootDir>/test/**/*.spec.js"
+    ],
+    "moduleNameMapper": {
+      "^aurelia-binding$": "<rootDir>/node_modules/aurelia-binding"
+    },
+    "modulePaths": [
+      "<rootDir>/src",
+      "<rootDir>/node_modules"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json"
+    ],
+    "modulePathIgnorePatterns": [
+      "dist",
+      ".yalc"
+    ],
+    "transform": {
+      "^.+\\.(css|less|sass|scss|styl|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "jest-transform-stub",
+      "^.+\\.js$": "babel-jest",
+      "\\.(jade)$": "jest-transform-pug"
+    },
+    "setupFiles": [
+      "<rootDir>/test/jest-pretest.js"
+    ],
+    "testEnvironment": "node",
+    "collectCoverage": false,
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!**/*.spec.js",
+      "!**/node_modules/**",
+      "!**/test/**"
+    ],
+    "coverageDirectory": "<rootDir>/test/coverage-jest",
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text",
+      "html"
+    ]
   }
-}
