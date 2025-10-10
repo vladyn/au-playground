@@ -1,5 +1,5 @@
 import { inject } from 'aurelia-framework';
-import { MenuRenderer } from './resources/rederers/menu-renderer';
+import { MenuRenderer } from './resources/renderers/menu-renderer';
 import { MenuService } from "./resources/services/menu-service";
 import { SumFormatValueConverter } from './resources/value-converters/sum-format-value-converter';
 import { Logger } from './resources/services/logger';
@@ -51,6 +51,9 @@ export class App {
     };
     this.menuService.renderMenu(this.viewModel);
   }
+  activate() {
+    console.log(this.constructor.name);
+  }
 
   bind() {
     this.nullAble = new SumFormatValueConverter().toView('123');
@@ -77,8 +80,9 @@ export class App {
       timeout: '66600000',
       closeHtml: '<button type="button" class="toast-close-button" id="currency-error" aria-label="Close">×</button>'
     });
-    // this.logger.warn('This is a warning message');
-    // this.logger.error('This is an error message');
-    // this.logger.success('This is a success message');
+    console.log(this);
+    this.logger.warn('This is a warning message');
+    this.logger.error('This is an error message');
+    this.logger.success('This is a success message');
   }
 }

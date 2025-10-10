@@ -1,6 +1,6 @@
 import { inject } from "aurelia-framework";
 import { I18N } from 'aurelia-i18n';
-import { MenuRenderer } from "../rederers/menu-renderer";
+import { MenuRenderer } from "../renderers/menu-renderer";
 import { MenuController } from "../controllers/menu-controller";
 
 @inject(MenuRenderer, I18N)
