@@ -1,14 +1,16 @@
 import { inject } from 'aurelia-framework';
 import { MenuRenderer } from './resources/renderers/menu-renderer';
 import { MenuService } from "./resources/services/menu-service";
+import { ToasterService } from './resources/services/toaster-service';
 import { SumFormatValueConverter } from './resources/value-converters/sum-format-value-converter';
 import { Logger } from './resources/services/logger';
-import idObj from 'identity-obj-proxy';
 
-@inject(MenuRenderer, MenuService, Logger)
+@inject(MenuRenderer, MenuService, ToasterService, Logger)
 export class App {
   message = 'Hello World!';
   viewModel = {};
+  toastViewModel = {};
+  isToasterVisible = false;
   isMenuVisible = true;
   currency = 'BGN';
   amount = 123456.789;
@@ -20,9 +22,10 @@ export class App {
   }
   nullAble = null;
 
-  constructor(contextMenuRenderer, menuService, logger) {
+  constructor(contextMenuRenderer, menuService, toasterService, logger) {
     this.contextMenuRenderer = contextMenuRenderer;
     this.menuService = menuService;
+    this.toasterService = toasterService;
     this.logger = logger
   }
 
@@ -49,6 +52,13 @@ export class App {
         }
       ],
     };
+
+    this.toastViewModel = {
+      title: 'Toaster Title',
+      message: 'This is a toaster message',
+      visible: false
+    };
+
     this.menuService.renderMenu(this.viewModel);
   }
   activate() {
@@ -71,6 +81,26 @@ export class App {
   openMenuClick() {
     this.menuService.controller.openMenu(this.viewModel);
     this.toggleMenu();
+  }
+
+  showToasterClick() {
+    this.toasterService.controller.showToaster(this.toastViewModel);
+    this.isToasterVisible = true;
+  }
+
+  hideToasterClick() {
+    this.toasterService.controller.hideToaster();
+    this.isToasterVisible = false;
+  }
+
+  toggleToasterClick() {
+    this.toasterService.controller.toggleToaster(this.toastViewModel);
+    this.isToasterVisible = !this.isToasterVisible;
+  }
+
+  snoozeToasterClick() {
+    this.toasterService.controller.snoozeToaster(5000);
+    this.isToasterVisible = false;
   }
 
   logMeIfYouCan() {

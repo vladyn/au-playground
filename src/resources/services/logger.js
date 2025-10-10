@@ -78,7 +78,7 @@ export class Logger {
   }
 
   options(options) {
-    let newOptions = Object.assign(toastr.options, options);
+    const newOptions = Object.assign(toastr.options, options);
     toastr.options = newOptions;
   }
 
