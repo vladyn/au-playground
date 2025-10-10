@@ -12,10 +12,10 @@ const defaults = {
 };
 
 function log(options) {
-  let opts = Object.assign({}, defaults, options);
+  const opts = Object.assign({}, defaults, options);
 
   if (opts.showToast) {
-    let last = toastr[opts.type](opts.message, opts.title);
+    const last = toastr[opts.type](opts.message, opts.title);
     return last;
   }
 }
@@ -34,14 +34,14 @@ function sanitize(options, messageType) {
 
 export class Logger {
   constructor() {
-    let defOpts = {
+    const defOpts = {
       closeButton: true,
       positionClass: 'toast-bottom-right',
       fadeOut: 1000
     };
 
-    let configOptions = Config.loggerOpts || {};
-    let options = Object.assign(toastr.options, defOpts, configOptions);
+    const configOptions = Config.loggerOpts || {};
+    const options = Object.assign(toastr.options, defOpts, configOptions);
     toastr.options = options;
   }
 
