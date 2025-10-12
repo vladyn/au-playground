@@ -26,3 +26,11 @@
 @position-try --left-from-anchor {
   position-area: block-start inline-start;
 }
+
+.close-button {
+  align-self: flex-end;
+  font-size: 18px;
+  font-weight: bold;
+  color: #999;
+  cursor: pointer;
+}
