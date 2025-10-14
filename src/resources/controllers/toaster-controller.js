@@ -8,11 +8,6 @@ export class ToasterController {
   }
 
   showToaster(viewModel) {
-    if (this.isVisible) {
-      console.warn('Toaster is already visible. Use toggleToaster to change its state.');
-      return;
-    }
-    
     this.viewModel = viewModel;
     this.isVisible = true;
     return this.renderer.showToaster(this.viewModel);
