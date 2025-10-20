@@ -12,19 +12,19 @@ You can change the standard webpack configurations from CLI easily with somethin
 
 To enable Webpack Bundle Analyzer, do `npm run analyze` (production build).
 
-To enable hot module reload, do `npm start -- --hmr`.
+To enable hot module reload, do `yarn start -- --hmr`.
 
-To change dev server port, do `npm start -- --port 8888`.
+To change dev server port, do `yarn start -- --port 8888`.
 
-To change dev server host, do `npm start -- --host 127.0.0.1`
+To change dev server host, do `yarn start -- --host 127.0.0.1`
 
-**PS:** You could mix all the flags as well, `npm start -- --host 127.0.0.1 --port 7070 --open --hmr`
+**PS:** You could mix all the flags as well, `yarn start -- --host 127.0.0.1 --port 7070 --open --hmr`
 
 For long time aurelia-cli user, you can still use `au run` with those arguments like `au run --env prod --open --hmr`. But `au run` now simply executes `npm start` command.
 
 ## Build for production
 
-Run `npm run build`, or the old way `au build --env prod`.
+Run `yarn run build`, or the old way `au build --env prod`.
 
 ## Unit tests
 
