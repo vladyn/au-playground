@@ -1,6 +1,6 @@
-import { 
-  inject, 
-  ViewCompiler, 
+import {
+  inject,
+  ViewCompiler,
   Container,
   ViewSlot,
   createOverrideContext
@@ -8,40 +8,43 @@ import {
 
 @inject(ViewCompiler, Container)
 export class ToasterRenderer {
-  viewSlot;
+  toasterControllers = [];
 
   constructor(viewCompiler, container) {
     this.viewCompiler = viewCompiler;
     this.container = container;
   }
 
-  render(viewModel) {
-    const template = `
-        <template>
-          <toaster></toaster>
-        </template>`;
-    const viewFactory = this.viewCompiler.compile(template);
-    const view = viewFactory.create(this.container);
-    const anchorIsContainer = true;
-    this.viewSlot = new ViewSlot(document.body, anchorIsContainer);
-    this.viewSlot.add(view);
-    this.viewSlot.attached();
-    this.viewSlot.bind(viewModel, createOverrideContext(viewModel));
-  }
+  render(toastController) {
+    // const template = `
+    //     <template>
+    //       <toaster></toaster>
+    //     </template>`;
+    // const viewFactory = this.viewCompiler.compile(template);
+    // const view = viewFactory.create(this.container);
+    toastController.slot = new ViewSlot(document.body, true);
+    toastController.slot.add(toastController.view);
 
-  showToaster(viewModel) {
-    this.render(viewModel);
-  }
-
-  hideToaster() {
-    this.viewSlot.removeAll();
-  }
-
-  toggleToaster(viewModel) {
-    if (this.viewSlot.children.length > 0) {
-      this.hideToaster();
-    } else {
-      this.showToaster(viewModel);
+    toastController.showToast = () => {
+      toastController.attached();
+      toastController.bind(toastController, createOverrideContext(toastController));
+      this.toasterControllers.push(toastController);
+      return new Promise((resolve, reject) => {
+        resolve(toastController);
+      })
     }
+
+    toastController.hideToast = () => {
+      toastController.slot.removeAll();
+    }
+    return Promise.resolve(toastController);
+  }
+
+  showToaster(toastController) {
+    return toastController.showToast();
+  }
+
+  hideToaster(toastController) {
+    return toastController.hideToast();
   }
 }

@@ -18,6 +18,6 @@ export class Toaster {
   }
 
   hide() {
-    this.toasterService.controller.hideToaster();
+    this.toasterService.hideToaster();
   }
 }

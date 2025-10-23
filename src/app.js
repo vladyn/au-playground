@@ -9,7 +9,7 @@ import { Logger } from './resources/services/logger';
 export class App {
   message = 'Hello World!';
   viewModel = {};
-  toastViewModel = {};
+  toastModel = {};
   isToasterVisible = false;
   isMenuVisible = true;
   currency = 'BGN';
@@ -53,7 +53,7 @@ export class App {
       ],
     };
 
-    this.toastViewModel = {
+    this.toastModel = {
       title: 'Toaster Title',
       message: 'This is a toaster message',
       visible: false
@@ -84,23 +84,11 @@ export class App {
   }
 
   showToasterClick() {
-    this.toasterService.controller.showToaster(this.toastViewModel);
-    this.isToasterVisible = true;
+    this.toasterService.showToaster(this.toastModel);
   }
 
   hideToasterClick() {
-    this.toasterService.controller.hideToaster();
-    this.isToasterVisible = false;
-  }
-
-  toggleToasterClick() {
-    this.toasterService.controller.toggleToaster(this.toastViewModel);
-    this.isToasterVisible = !this.isToasterVisible;
-  }
-
-  snoozeToasterClick() {
-    this.toasterService.controller.snoozeToaster(5000);
-    this.isToasterVisible = false;
+    this.toasterService.hideToaster();
   }
 
   logMeIfYouCan() {

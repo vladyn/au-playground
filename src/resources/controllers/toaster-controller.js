@@ -1,50 +1,44 @@
+import {invokeLifecycle} from "../utils/lifecycle";
+
 export class ToasterController {
-  constructor(toasterRenderer) {
+  constructor(toasterRenderer, settings, _resolve, _reject) {
     this.renderer = toasterRenderer;
-    this.isVisible = false;
-    this.viewModel = null;
-    this.snoozeTimeoutId = null;
-    this.defaultSnoozeTime = 3000; // 3 seconds
+    this.settings = settings;
+    this._resolve = _resolve;
+    this._reject = _reject;
   }
 
-  showToaster(viewModel) {
-    this.viewModel = viewModel;
-    this.isVisible = true;
-    return this.renderer.showToaster(this.viewModel);
+  ok(result) {
+    return this.close(true, result);
   }
 
-  hideToaster() {
-    if (!this.isVisible) {
-      console.warn('Toaster is already hidden. Use toggleToaster to change its state.');
-      return;
-    }
-    this.isVisible = false;
-    if (this.snoozeTimeoutId) {
-      clearTimeout(this.snoozeTimeoutId);
-      this.snoozeTimeoutId = null;
-    }
-    return this.renderer.hideToaster();
+  cancel(result) {
+    return this.close(false, result);
   }
 
-  snoozeToaster(snoozeTime = this.defaultSnoozeTime) {
-    if (!this.isVisible) {
-      console.warn('Toaster is not visible. Cannot snooze.');
-      return;
-    }
-    this.isVisible = false;
-    this.renderer.hideToaster();
-    this.snoozeTimeoutId = setTimeout(() => {
-      this.isVisible = true;
-      this.renderer.showToaster(this.viewModel);
-      this.snoozeTimeoutId = null;
-    }, snoozeTime);
+  close(ok, result) {
+    return invokeLifecycle(this.viewModel, 'canDeactivate').then(canDeactivate => {
+      if (canDeactivate) {
+        return invokeLifecycle(this.viewModel, 'deactivate').then(() => {
+          return this.renderer.hideToaster(this).then(() => {
+            return this.renderer.destroyDialogHost(this).then(() => {
+              this.controller.unbind();
+              this._resolve({wasCancelled: !ok, output: result});
+            });
+          });
+        });
+      }
+    });
   }
 
-  toggleToaster(viewModel) {
-    if (this.isVisible) {
-      return this.hideToaster();
-    }
-    
-    return this.showToaster(viewModel);
+  error(message) {
+    return invokeLifecycle(this.viewModel, 'deactivate').then(() => {
+      return this.renderer.hideToaster(this).then(() => {
+        return this.renderer.destroyDialogHost(this).then(() => {
+          this.controller.unbind();
+          this._reject(message);
+        });
+      });
+    });
   }
 }
