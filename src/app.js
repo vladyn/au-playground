@@ -87,8 +87,8 @@ export class App {
     this.toasterService.showToaster(this.toastModel);
   }
 
-  hideToasterClick() {
-    this.toasterService.hideToaster();
+  hideAllToasters () {
+    this.toasterService.hideAllToasters();
   }
 
   logMeIfYouCan() {

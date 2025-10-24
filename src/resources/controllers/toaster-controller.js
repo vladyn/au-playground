@@ -21,24 +21,13 @@ export class ToasterController {
       if (canDeactivate) {
         return invokeLifecycle(this.viewModel, 'deactivate').then(() => {
           return this.renderer.hideToaster(this).then(() => {
-            return this.renderer.destroyDialogHost(this).then(() => {
+            return this.renderer.destroyHost(this).then(() => {
               this.controller.unbind();
               this._resolve({wasCancelled: !ok, output: result});
             });
           });
         });
       }
-    });
-  }
-
-  error(message) {
-    return invokeLifecycle(this.viewModel, 'deactivate').then(() => {
-      return this.renderer.hideToaster(this).then(() => {
-        return this.renderer.destroyDialogHost(this).then(() => {
-          this.controller.unbind();
-          this._reject(message);
-        });
-      });
     });
   }
 }

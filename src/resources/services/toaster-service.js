@@ -23,6 +23,7 @@ export class ToasterService {
     return new Promise((resolve, reject) => {
       let childContainer = this.container.createChild();
       let toasterController = new ToasterController(this.toasterRenderer, resolve, reject);
+
       let instruction = {
         viewModel: Toaster,
         container: this.container,
@@ -42,16 +43,11 @@ export class ToasterService {
               controller.automate();
 
               return this.toasterRenderer.render(toasterController)
-                .then(() => this.toasterRenderer.render(toasterController));
             });
           }
         });
       });
     })
-  }
-
-  hideToaster() {
-    return this.hideAllToasters();
   }
 
   hideAllToasters() {

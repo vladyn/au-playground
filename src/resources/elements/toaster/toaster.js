@@ -1,15 +1,20 @@
 import { inject, bindable, customElement } from 'aurelia-framework';
-import { ToasterService } from '../../services/toaster-service';
+import { ToasterController } from "../../controllers/toaster-controller";
 
-@inject(Element, ToasterService)
+@inject(Element, ToasterController)
 @customElement('toaster')
 export class Toaster {
   @bindable title = 'Toaster';
   @bindable message = 'This is a toaster message';
 
-  constructor(element, toasterService) {
+  constructor(element, toasterController) {
     this.element = element;
-    this.toasterService = toasterService;
+    this.toasterController = toasterController;
+  }
+
+  attached() {
+    this.element.focus();
+    console.log('Toaster attached');
   }
 
   bind(bindingContext, overrideContext) {
@@ -18,6 +23,8 @@ export class Toaster {
   }
 
   hide() {
-    this.toasterService.hideToaster();
+    this.toasterController.close(true, { result: 'Toaster closed' })
+      .then(result => console.log(result))
+      .catch(error => console.log(error));
   }
 }
