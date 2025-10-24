@@ -43,6 +43,7 @@ export class ToasterService {
               controller.automate();
 
               return this.toasterRenderer.render(toasterController)
+                .then(() => this.toasterRenderer.showToaster(toasterController));
             });
           }
         });

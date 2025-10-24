@@ -1,41 +1,27 @@
 import {
   inject,
-  ViewCompiler,
-  Container,
-  ViewSlot,
-  createOverrideContext
+  ViewSlot
 }  from 'aurelia-framework';
 
-@inject(ViewCompiler, Container)
+@inject()
 export class ToasterRenderer {
   toasterControllers = [];
 
-  constructor(viewCompiler, container) {
-    this.viewCompiler = viewCompiler;
-    this.container = container;
-  }
+  constructor() { }
 
   render(toastController) {
-    // const template = `
-    //     <template>
-    //       <toaster></toaster>
-    //     </template>`;
-    // const viewFactory = this.viewCompiler.compile(template);
-    // const view = viewFactory.create(this.container);
     toastController.slot = new ViewSlot(document.body, true);
     toastController.slot.add(toastController.view);
 
     toastController.show = () => {
-      toastController.attached();
-      toastController.bind(toastController, createOverrideContext(toastController));
       this.toasterControllers.push(toastController);
+      toastController.slot.attached();
       return new Promise((resolve, reject) => {
         resolve(toastController);
       })
     }
 
     toastController.hide = () => {
-      toastController.slot.removeAll();
       return new Promise((resolve, reject) => {
         const index = this.toasterControllers.indexOf(toastController);
         if (index > -1) {
@@ -47,9 +33,9 @@ export class ToasterRenderer {
 
     toastController.destroy = () => {
       toastController.slot.detached();
-      toastController.unbind();
+      toastController.slot.removeAll(true);
       return new Promise((resolve, reject) => {
-        resolve();
+        resolve(toastController);
       });
     }
     return Promise.resolve(toastController);

@@ -1,9 +1,8 @@
-import {invokeLifecycle} from "../utils/lifecycle";
+import { invokeLifecycle } from "../utils/lifecycle";
 
 export class ToasterController {
-  constructor(toasterRenderer, settings, _resolve, _reject) {
+  constructor(toasterRenderer, _resolve, _reject) {
     this.renderer = toasterRenderer;
-    this.settings = settings;
     this._resolve = _resolve;
     this._reject = _reject;
   }
@@ -23,7 +22,7 @@ export class ToasterController {
           return this.renderer.hideToaster(this).then(() => {
             return this.renderer.destroyHost(this).then(() => {
               this.controller.unbind();
-              this._resolve({wasCancelled: !ok, output: result});
+              this._resolve({ wasCancelled: !ok, output: result });
             });
           });
         });

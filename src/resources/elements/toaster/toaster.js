@@ -9,11 +9,10 @@ export class Toaster {
 
   constructor(element, toasterController) {
     this.element = element;
-    this.toasterController = toasterController;
+    this.controller = toasterController;
   }
 
   attached() {
-    this.element.focus();
     console.log('Toaster attached');
   }
 
@@ -23,8 +22,12 @@ export class Toaster {
   }
 
   hide() {
-    this.toasterController.close(true, { result: 'Toaster closed' })
-      .then(result => console.log(result))
-      .catch(error => console.log(error));
+    this.controller.ok(true, { result: 'Toaster closed' })
+      .then(result => {
+        console.log(result)
+      })
+      .catch(error => {
+        console.log(error)
+      });
   }
 }

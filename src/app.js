@@ -10,7 +10,6 @@ export class App {
   message = 'Hello World!';
   viewModel = {};
   toastModel = {};
-  isToasterVisible = false;
   isMenuVisible = true;
   currency = 'BGN';
   amount = 123456.789;
@@ -61,9 +60,6 @@ export class App {
 
     this.menuService.renderMenu(this.viewModel);
   }
-  activate() {
-    console.log(this.constructor.name);
-  }
 
   bind() {
     this.nullAble = new SumFormatValueConverter().toView('123');
@@ -98,7 +94,7 @@ export class App {
       timeout: '66600000',
       closeHtml: '<button type="button" class="toast-close-button" id="currency-error" aria-label="Close">×</button>'
     });
-    console.log(this);
+
     this.logger.warn('This is a warning message');
     this.logger.error('This is an error message');
     this.logger.success('This is a success message');
