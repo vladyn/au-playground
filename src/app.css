@@ -1,1 +1,13 @@
 @import '../node_modules/toastr/build/toastr.css';
+
+.toaster-anchor {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 1px;
+  border: 1px solid red;
+  overflow-y: auto;
+  overflow-x: hidden;
+  anchor-name: --toaster-anchor;
+}

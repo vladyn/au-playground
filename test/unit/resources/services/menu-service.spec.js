@@ -1,5 +1,5 @@
 import {MenuService} from "../../../../src/resources/services/menu-service";
-import {MenuRenderer} from "../../../../src/resources/rederers/menu-renderer";
+import {MenuRenderer} from "../../../../src/resources/renderers/menu-renderer";
 import {MenuController} from "../../../../src/resources/controllers/menu-controller";
 
 xdescribe('MenuService', () => {

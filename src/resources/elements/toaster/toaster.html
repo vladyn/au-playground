@@ -1,0 +1,9 @@
+<template>
+  <require from="./toaster.css"></require>
+
+  <div class="toaster">
+    <div class="close-button" click.trigger="hide()">&times;</div>
+    <h1>${title}</h1>
+    <slot>${message}</slot>
+  </div>
+</template>

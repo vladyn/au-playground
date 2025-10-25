@@ -1,14 +1,15 @@
 import { inject } from 'aurelia-framework';
-import { MenuRenderer } from './resources/rederers/menu-renderer';
+import { MenuRenderer } from './resources/renderers/menu-renderer';
 import { MenuService } from "./resources/services/menu-service";
+import { ToasterService } from './resources/services/toaster-service';
 import { SumFormatValueConverter } from './resources/value-converters/sum-format-value-converter';
 import { Logger } from './resources/services/logger';
-import idObj from 'identity-obj-proxy';
 
-@inject(MenuRenderer, MenuService, Logger)
+@inject(MenuRenderer, MenuService, ToasterService, Logger)
 export class App {
   message = 'Hello World!';
   viewModel = {};
+  toastModel = {};
   isMenuVisible = true;
   currency = 'BGN';
   amount = 123456.789;
@@ -20,9 +21,10 @@ export class App {
   }
   nullAble = null;
 
-  constructor(contextMenuRenderer, menuService, logger) {
+  constructor(contextMenuRenderer, menuService, toasterService, logger) {
     this.contextMenuRenderer = contextMenuRenderer;
     this.menuService = menuService;
+    this.toasterService = toasterService;
     this.logger = logger
   }
 
@@ -49,6 +51,13 @@ export class App {
         }
       ],
     };
+
+    this.toastModel = {
+      title: 'Toaster Title',
+      message: 'This is a toaster message',
+      visible: false
+    };
+
     this.menuService.renderMenu(this.viewModel);
   }
 
@@ -70,6 +79,14 @@ export class App {
     this.toggleMenu();
   }
 
+  showToasterClick() {
+    this.toasterService.showToaster(this.toastModel);
+  }
+
+  hideAllToasters () {
+    this.toasterService.hideAllToasters();
+  }
+
   logMeIfYouCan() {
     this.logger.info({
       title: 'Blias!!!',
@@ -77,8 +94,9 @@ export class App {
       timeout: '66600000',
       closeHtml: '<button type="button" class="toast-close-button" id="currency-error" aria-label="Close">×</button>'
     });
-    // this.logger.warn('This is a warning message');
-    // this.logger.error('This is an error message');
-    // this.logger.success('This is a success message');
+
+    this.logger.warn('This is a warning message');
+    this.logger.error('This is an error message');
+    this.logger.success('This is a success message');
   }
 }

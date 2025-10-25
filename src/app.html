@@ -1,5 +1,6 @@
 <template>
   <require from="app.css"></require>
+  <div class="toaster-anchor"></div>
   <h1>${message}</h1>
   <div as-element="my-profile" first-name="John" last-name="Doe"></div>
   <my-profile first-name="Jane" last-name="Smith"></my-profile>
@@ -30,6 +31,11 @@
   <account-details message="Blias!"></account-details>
   <button click.trigger="openMenuClick()" disabled.bind="isMenuVisible">Enable the context menu</button>
   <button click.trigger="closeMenuClick()" disabled.bind="!isMenuVisible">Disable the context menu</button>
+  <hr />
+  <button click.trigger="showToasterClick()">Show Toaster</button>
+  <button click.trigger="hideAllToasters()">Hide Toaster</button>
+
+  <hr />
 
     <tabs>
       <tab header="Top Movies">

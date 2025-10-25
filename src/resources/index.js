@@ -23,5 +23,9 @@ export function configure(config) {
 
   config.globalResources(
     PLATFORM.moduleName('./value-converters/sum-format-value-converter')
-  ); 
+  );
+
+  config.globalResources(
+    PLATFORM.moduleName('./elements/toaster/toaster')
+  );
 }

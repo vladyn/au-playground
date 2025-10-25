@@ -1,5 +1,5 @@
 import { MenuController } from "../../../../src/resources/controllers/menu-controller";
-import { MenuRenderer } from "../../../../src/resources/rederers/menu-renderer";
+import { MenuRenderer } from "../../../../src/resources/renderers/menu-renderer";
 
 describe('MenuController', () => {
   let menuController;

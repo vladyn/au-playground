@@ -1,4 +1,4 @@
-import { MenuRenderer } from "../../../../src/resources/rederers/menu-renderer";
+import { MenuRenderer } from "../../../../src/resources/renderers/menu-renderer";
 describe('MenuRenderer', () => {
   let renderer;
   let compileSpy;
