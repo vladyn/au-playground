@@ -7,8 +7,6 @@ import {
 export class ToasterRenderer {
   toasterControllers = [];
 
-  constructor() { }
-
   render(toastController) {
     toastController.slot = new ViewSlot(document.body, true);
     toastController.slot.add(toastController.view);

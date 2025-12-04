@@ -12,10 +12,6 @@ export class Toaster {
     this.controller = toasterController;
   }
 
-  attached() {
-    console.log('Toaster attached');
-  }
-
   bind(bindingContext, overrideContext) {
     this.title = bindingContext?.title || this.title;
     this.message = bindingContext?.message || this.message;
