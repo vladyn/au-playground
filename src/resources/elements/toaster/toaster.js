@@ -18,16 +18,12 @@ export class Toaster {
     this.title = bindingContext?.title || this.title;
     this.message = bindingContext?.message || this.message;
     this.count = overrideContext.bindingContext.controller.renderer.toasterControllers.length;
-    
+    this.title += ` (${this.count})`;
     if (this.count > 0) {
-      this.title += ` (${this.count})`;
-      const toastMessages = this.element.querySelectorAll('.toaster');
-      if (toastMessages?.length > 1) {
-        /// query this element and update the the top position with offset 160px per toast message
+      const toastMessages = Array.from(this.element.querySelectorAll('.toaster'));
         toastMessages.forEach((toastMessage, index) => {
-          toastMessage.style.top = `${index * 160 + 20}px`;
+          toastMessage.style.top = `${(index * 160) + 160}px`;
         });
-      }
     }
   }
 
