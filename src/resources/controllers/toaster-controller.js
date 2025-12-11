@@ -1,3 +1,4 @@
+import { clear } from "toastr";
 import { invokeLifecycle } from "../utils/lifecycle";
 
 export class ToasterController {
@@ -5,6 +6,7 @@ export class ToasterController {
     this.renderer = toasterRenderer;
     this._resolve = _resolve;
     this._reject = _reject;
+    this.timeOutId = null;
   }
 
   ok(result) {
@@ -13,6 +15,16 @@ export class ToasterController {
 
   cancel(result) {
     return this.close(false, result);
+  }
+
+  closeWithDelay(ok, result, delay) {
+    return new Promise((resolve, reject) => {
+      this.timeOutId = setTimeout(() => {
+        this.close(ok, result)
+          .then(res => resolve(res))
+          .catch(err => reject(err));
+      }, delay);
+    });
   }
 
   close(ok, result) {
@@ -26,6 +38,8 @@ export class ToasterController {
             return this.renderer.destroyHost(this).then(() => {
               this.controller.unbind();
               this._resolve({ wasCancelled: !ok, output: result });
+              clearTimeout(this.timeOutId);
+              return Promise.resolve({ wasCancelled: !ok, output: result });
             });
           });
         });

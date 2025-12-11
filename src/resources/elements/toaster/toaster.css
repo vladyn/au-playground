@@ -1,4 +1,5 @@
 .toaster {
+  cursor: pointer;
   position-anchor: --toaster-anchor;
   position: fixed;
   position-area: block-end inline-start;

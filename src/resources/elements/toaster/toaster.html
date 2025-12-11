@@ -1,9 +1,9 @@
 <template>
   <require from="./toaster.css"></require>
 
-  <div class="toaster" class.bind="toastType">
+  <div class="toaster" class.bind="toastType" mouseout.trigger="hideWithDelay()">
     <div class="close-button" click.trigger="hide()">&times;</div>
-    <h1>${title}</h1>
+    <h4>${title}</h4>
     <slot>${message}</slot>
   </div>
 </template>

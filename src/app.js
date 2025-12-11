@@ -98,6 +98,11 @@ export class App {
     this.toasterService.showToaster(patched);
   }
 
+  showAndHideWithDelayClick() {
+    const patched = { ...this.toastModel, message: 'This toaster will close after 3 seconds', type: 'info', delay: 3000 };
+    this.toasterService.showToaster(patched);
+  }
+
   hideAllToasters () {
     this.toasterService.hideAllToasters();
   }

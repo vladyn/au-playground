@@ -1,6 +1,7 @@
 import { inject, bindable, customElement } from 'aurelia-framework';
 import { ToasterController } from "../../controllers/toaster-controller";
 import { toastSizes } from '../../enums/toaster-sizes';
+import { t } from '../../../../node_modules/i18next/index';
 
 @inject(Element, ToasterController)
 @customElement('toaster')
@@ -10,6 +11,13 @@ export class Toaster {
   constructor(element, toasterController) {
     this.element = element;
     this.controller = toasterController;
+  }
+
+  attached() {
+    this.viewModel = this.controller.viewModel;
+    if (this.viewModel?.delay) {
+      // this.hideWithDelay();
+    }
   }
 
   bind(bindingContext) {
@@ -28,6 +36,16 @@ export class Toaster {
 
   hide() {
     this.controller.ok(true, { result: 'Toaster closed' })
+      .then(result => {
+        console.log(result)
+      })
+      .catch(error => {
+        console.log(error)
+      });
+  }
+
+  hideWithDelay() {
+    this.controller.closeWithDelay(true, { result: 'Toaster closed with delay' }, this.viewModel.delay)
       .then(result => {
         console.log(result)
       })
