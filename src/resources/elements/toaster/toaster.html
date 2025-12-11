@@ -4,6 +4,8 @@
   <div class="toaster" class.bind="toastType" mouseout.trigger="hideWithDelay()">
     <div class="close-button" click.trigger="hide()">&times;</div>
     <h4>${title}</h4>
-    <slot>${message}</slot>
+    <slot>
+      <p>${message}</p>
+    </slot>
   </div>
 </template>
