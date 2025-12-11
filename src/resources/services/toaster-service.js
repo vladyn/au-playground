@@ -3,7 +3,7 @@ import { I18N } from 'aurelia-i18n';
 import { ToasterRenderer } from '../renderers/toaster-renderer';
 import { ToasterController } from '../controllers/toaster-controller';
 import { invokeLifecycle } from '../utils/lifecycle';
-import { ShowToasterEvent } from "../events/tosater-event";
+import { ShowToasterEvent } from "../events/toaster-event";
 import { EventAggregator } from 'aurelia-event-aggregator';
 import { Toaster } from "../elements/toaster/toaster";
 
@@ -40,6 +40,7 @@ export class ToasterService {
             return this.compositionEngine.createController(returnedInstruction).then(controller => {
               toasterController.controller = controller;
               toasterController.view = controller.view;
+              toasterController.viewModel = model;
               controller.automate();
 
               return this.toasterRenderer.render(toasterController)

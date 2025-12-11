@@ -4,17 +4,32 @@
   position-area: block-end inline-start;
   background-color: burlywood;
   border: 1px solid #ccc;
-  border-radius: 3px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   padding: 10px;
   width: 300px;
-  max-width: 25vw;
+  height: 160px;
   color: #333;
   z-index: 1000;
   display: flex;
   flex-direction: column;
   gap: 10px;
   position-try-fallbacks: --above-anchor, --left-from-anchor;
+
+  &.info {
+    background-color: #eafdab;
+    border-color: #bce8f1;
+    color: #31708f;
+  }
+  &.success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #3c763d;
+  }
+  &.warning {
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+    color: #8a6d3b; 
+  }
 }
 
 @position-try --above-anchor {

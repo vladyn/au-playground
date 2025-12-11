@@ -17,8 +17,11 @@ export class ToasterController {
 
   close(ok, result) {
     return invokeLifecycle(this.viewModel, 'canDeactivate').then(canDeactivate => {
-      if (canDeactivate) {
-        return invokeLifecycle(this.viewModel, 'deactivate').then(() => {
+      if (!canDeactivate) {
+        return Promise.reject('Cannot close toaster');
+      }
+
+      return invokeLifecycle(this.viewModel, 'deactivate').then(() => {
           return this.renderer.hideToaster(this).then(() => {
             return this.renderer.destroyHost(this).then(() => {
               this.controller.unbind();
@@ -26,7 +29,6 @@ export class ToasterController {
             });
           });
         });
-      }
     });
   }
 }

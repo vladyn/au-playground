@@ -14,6 +14,7 @@ export class ToasterRenderer {
     toastController.show = () => {
       this.toasterControllers.push(toastController);
       toastController.slot.attached();
+      toastController.slot.bind();
       return new Promise((resolve, reject) => {
         resolve(toastController);
       })
