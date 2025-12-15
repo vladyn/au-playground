@@ -10,6 +10,7 @@
   "dependencies": {
     "@angular/platform-browser": "^17.3.2",
     "ag-grid-aurelia": "^21.0.1",
+    "ag-grid-community": "^35.0.0",
     "aurelia-animator-css": "^1.0.4",
     "aurelia-bootstrapper": "^2.4.0",
     "aurelia-framework": "^1.4.1",
