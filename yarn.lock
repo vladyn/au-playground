@@ -2190,6 +2190,11 @@ acorn@^8.15.0:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.15.0.tgz#a360898bc415edaac46c8241f6383975b930b816"
   integrity sha512-NZyJarBfL7nWwIq+FDL6Zp/yHEhePMNnnJ0y3qfieCrmNvYct8uvtiV41UvlSe6apAfk0fY1FbWx+NwfmpvtTg==
 
+ag-grid-aurelia@^21.0.1:
+  version "21.0.1"
+  resolved "https://registry.yarnpkg.com/ag-grid-aurelia/-/ag-grid-aurelia-21.0.1.tgz#a03b2145b6d37975b243db7e4727106481a008be"
+  integrity sha512-pak8Vim+wSaOjt3zd2Vn2feS9pEN/N5ax00bDLdqVoJa/oThlYhDl/dXNGFag9SaepRw7G9GSXJ7f9X3t+jw3g==
+
 agent-base@6:
   version "6.0.2"
   resolved "https://registry.npmjs.org/agent-base/-/agent-base-6.0.2.tgz"
