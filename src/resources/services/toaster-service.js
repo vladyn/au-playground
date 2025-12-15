@@ -3,7 +3,7 @@ import { I18N } from 'aurelia-i18n';
 import { ToasterRenderer } from '../renderers/toaster-renderer';
 import { ToasterController } from '../controllers/toaster-controller';
 import { invokeLifecycle } from '../utils/lifecycle';
-import { ShowToasterEvent } from "../events/tosater-event";
+import { ShowToasterEvent } from "../events/toaster-event";
 import { EventAggregator } from 'aurelia-event-aggregator';
 import { Toaster } from "../elements/toaster/toaster";
 
@@ -21,10 +21,10 @@ export class ToasterService {
     this.eventAggregator.publish(new ShowToasterEvent());
 
     return new Promise((resolve, reject) => {
-      let childContainer = this.container.createChild();
-      let toasterController = new ToasterController(this.toasterRenderer, resolve, reject);
+      const childContainer = this.container.createChild();
+      const toasterController = new ToasterController(this.toasterRenderer, resolve, reject);
 
-      let instruction = {
+      const instruction = {
         viewModel: Toaster,
         container: this.container,
         childContainer: childContainer
@@ -40,6 +40,7 @@ export class ToasterService {
             return this.compositionEngine.createController(returnedInstruction).then(controller => {
               toasterController.controller = controller;
               toasterController.view = controller.view;
+              toasterController.viewModel = model;
               controller.automate();
 
               return this.toasterRenderer.render(toasterController)
@@ -52,11 +53,11 @@ export class ToasterService {
   }
 
   hideAllToasters() {
-    let toasterControllers = this.toasterRenderer.toasterControllers;
+    const toasterControllers = this.toasterRenderer.toasterControllers;
     if (toasterControllers.length > 0) {
-      toasterControllers.forEach(dc => {
+      for (const dc of toasterControllers) {
         dc.cancel();
-      });
+      }
     }
   }
 

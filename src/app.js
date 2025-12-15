@@ -53,9 +53,9 @@ export class App {
     };
 
     this.toastModel = {
-      title: 'Toaster Title',
-      message: 'This is a toaster message',
-      visible: false
+      title: 'Toaster Title23234',
+      message: 'This is a toaster message12312312',
+      close: true
     };
 
     this.menuService.renderMenu(this.viewModel);
@@ -79,8 +79,28 @@ export class App {
     this.toggleMenu();
   }
 
-  showToasterClick() {
+  showInfoClick() {
     this.toasterService.showToaster(this.toastModel);
+  }
+
+  showSuccessClick() {
+    const patched = { ...this.toastModel, message: 'This is a SUCCESS toaster message', type: 'success' };
+    this.toasterService.showToaster(patched);
+  }
+
+  showWarningClick() {
+    const patched = { ...this.toastModel, message: 'This is a WARNING toaster message', type: 'warning' };
+    this.toasterService.showToaster(patched);
+  }
+
+  showErrorClick() {
+    const patched = { ...this.toastModel, message: 'This is an ERROR toaster message', type: 'error' };
+    this.toasterService.showToaster(patched);
+  }
+
+  showAndHideWithDelayClick() {
+    const patched = { ...this.toastModel, message: 'This toaster will close after 3 seconds', type: 'info', delay: 3000 };
+    this.toasterService.showToaster(patched);
   }
 
   hideAllToasters () {

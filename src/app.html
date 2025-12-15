@@ -32,8 +32,12 @@
   <button click.trigger="openMenuClick()" disabled.bind="isMenuVisible">Enable the context menu</button>
   <button click.trigger="closeMenuClick()" disabled.bind="!isMenuVisible">Disable the context menu</button>
   <hr />
-  <button click.trigger="showToasterClick()">Show Toaster</button>
-  <button click.trigger="hideAllToasters()">Hide Toaster</button>
+  <button click.trigger="showInfoClick()">Show iNFO Toaster</button>
+  <button click.trigger="showSuccessClick()">Show SUCCESS Toaster</button>
+  <button click.trigger="showWarningClick()">Show WARNING Toaster</button>
+  <button click.trigger="showErrorClick()">Show ERROR Toaster</button>
+  <button click.trigger="hideAllToasters()">Hide All Toasters</button>
+  <button click.trigger="showAndHideWithDelayClick()">Show Toaster with Delay</button>
 
   <hr />
 
