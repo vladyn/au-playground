@@ -10,7 +10,7 @@
   "dependencies": {
     "@angular/platform-browser": "^17.3.2",
     "ag-grid-aurelia": "^21.0.1",
-    "ag-grid-community": "^35.0.0",
+    "ag-grid-community": "31.1.4",
     "aurelia-animator-css": "^1.0.4",
     "aurelia-bootstrapper": "^2.4.0",
     "aurelia-framework": "^1.4.1",
@@ -19,7 +19,7 @@
     "i18next-xhr-backend": "^3.2.2",
     "jest-transform-pug": "^1.0.0",
     "jquery": "^3.7.1",
-    "pug-html-loader": "^1.1.5",
+    "pug-html-loader": "1.1.6",
     "toastr": "^2.1.4"
   },
   "devDependencies": {
