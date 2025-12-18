@@ -2,6 +2,8 @@ import environment from '../config/environment.json';
 import {PLATFORM} from 'aurelia-pal';
 import {TCustomAttribute} from 'aurelia-i18n';
 import Backend from 'i18next-xhr-backend'; // <-- your previously installed backend plugin
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.bundle.js';
 
 export function configure(aurelia) {
   aurelia.use

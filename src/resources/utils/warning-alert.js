@@ -1,1 +1,1 @@
-export const warningAlert = (content) => `<span class="alert alert-info">${content}</span>`;
+export const warningAlert = (content) => `${content}`;
