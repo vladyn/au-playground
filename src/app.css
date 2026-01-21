@@ -1,6 +1,6 @@
 @import '../node_modules/toastr/build/toastr.css';
 @import '../node_modules/ag-grid-community/styles/ag-grid.css';
-@import '../node_modules/ag-grid-community/styles/ag-theme-material.css';
+@import '../node_modules/ag-grid-community/styles/ag-theme-alpine.css';
 
 .toaster-anchor {
   position: fixed;
