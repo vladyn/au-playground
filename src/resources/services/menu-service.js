@@ -1,13 +1,11 @@
 import { inject } from "aurelia-framework";
-import { I18N } from 'aurelia-i18n';
 import { MenuRenderer } from "../renderers/menu-renderer";
 import { MenuController } from "../controllers/menu-controller";
 
-@inject(MenuRenderer, I18N)
+@inject(MenuRenderer)
 export class MenuService {
-  constructor(menuRenderer, i18n) {
+  constructor(menuRenderer) {
     this.menuRenderer = menuRenderer;
-    this.i18n = i18n;
     this.controller = new MenuController(menuRenderer);
   }
 

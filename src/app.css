@@ -1,4 +1,6 @@
 @import '../node_modules/toastr/build/toastr.css';
+@import '../node_modules/ag-grid-community/styles/ag-grid.css';
+@import '../node_modules/ag-grid-community/styles/ag-theme-alpine.css';
 
 .toaster-anchor {
   position: fixed;
@@ -10,4 +12,21 @@
   overflow-y: auto;
   overflow-x: hidden;
   anchor-name: --toaster-anchor;
+}
+
+.ag-overlay-no-rows-center {
+  font-size: 14px;
+  font-weight: bold;
+  display: inline-block;
+  min-width: 95%;
+  padding: 10px;
+  text-align: center;
+  color: #151414;
+  border-radius: 3px;
+  background-color: rgb(240, 208, 243);
+}
+
+.ag-overlay-wrapper {
+  background-color: transparent;
+  height: 32%;
 }

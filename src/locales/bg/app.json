@@ -4,5 +4,7 @@
   "lives_plural": "{{count}} живота остават",
   "friend": "Приятел",
   "friend_male": "Гадже (момче)",
-  "friend_female": "Гадже (момиче)"
+  "friend_female": "Гадже (момиче)",
+  "noResults": "Няма намерени резултати",
+  "loading": "Зареждане..."
 }
