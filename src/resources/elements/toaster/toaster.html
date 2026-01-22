@@ -5,7 +5,10 @@
     <div class="close-button" click.trigger="hide()">&times;</div>
     <h4>${title}</h4>
     <slot>
-      <p>${message}</p>
+      <div class="toaster-wrapper">
+        <i class="fa-solid fa-triangle-exclamation size-xxl"></i>
+        <p>${message}</p>
+      </div>
     </slot>
   </div>
 </template>

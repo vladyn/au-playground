@@ -29,8 +29,18 @@
   &.warning {
     background-color: #fcf8e3;
     border-color: #faebcc;
-    color: #8a6d3b; 
+    color: #8a6d3b;
   }
+}
+
+.toaster-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.size-xxl {
+  font-size: 34px;
 }
 
 @position-try --above-anchor {
