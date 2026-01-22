@@ -1,4 +1,3 @@
-import { clear } from "toastr";
 import { invokeLifecycle } from "../utils/lifecycle";
 
 export class ToasterController {

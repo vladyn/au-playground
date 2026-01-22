@@ -1,7 +1,6 @@
-import { inject, bindable, customElement } from 'aurelia-framework';
+import { inject, customElement } from 'aurelia-framework';
 import { ToasterController } from "../../controllers/toaster-controller";
 import { toastSizes } from '../../enums/toaster-sizes';
-import { t } from '../../../../node_modules/i18next/index';
 
 @inject(Element, ToasterController)
 @customElement('toaster')
@@ -16,7 +15,7 @@ export class Toaster {
   attached() {
     this.viewModel = this.controller.viewModel;
     if (this.viewModel?.delay) {
-      // this.hideWithDelay();
+      this.hideWithDelay();
     }
   }
 
@@ -26,8 +25,17 @@ export class Toaster {
     this.toastType = this.controller.viewModel?.type || 'info';
     this.count = bindingContext.controller.renderer.toasterControllers.length;
     this.title += ` (${this.count})`;
+    console.log(this.controller);
+    console.log('toast count: ', this.count);
+    console.log('toast title: ', this.title);
+
+    const firstToasterHeight = this.element.querySelector('.toaster')?.offsetHeight;
+
+    console.log('first toaster height: ', firstToasterHeight);
+
     if (this.count > 0) {
       const toastMessages = Array.from(this.element.querySelectorAll('.toaster'));
+      console.log('toast messages: ', toastMessages);
         toastMessages.forEach((toastMessage, index) => {
           toastMessage.style.top = `${(index * toastSizes.get('medium').height) + toastSizes.get('medium').height}px`;
         });
